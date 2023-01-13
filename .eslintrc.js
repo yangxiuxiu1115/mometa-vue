@@ -17,10 +17,11 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: ['./packages/editor/tsconfig.json', './packages/example/tsconfig.json']
+    project: ['./packages/editor/tsconfig.json', './packages/example/tsconfig.json', './tsconfig.json']
   },
   plugins: ['vue'],
   rules: {
-    '@typescript-eslint/ban-ts-comment': 'off'
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-explicit-any': 'off'
   }
 }
