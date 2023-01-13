@@ -21,6 +21,7 @@ const InjectMometaElement = (source: string) => {
       types.expressionStatement(types.identifier('return'))
     ])
   )
+
   ;(traverse as any).default(ast, {
     VariableDeclarator(path: any) {
       if (path.get('id').node.name === 'patchProp') {

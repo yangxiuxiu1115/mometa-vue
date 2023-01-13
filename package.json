@@ -5,16 +5,31 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "example": "cd ./packages/example && pnpm run dev"
+    "example": "cd ./packages/example && pnpm run dev",
+    "prepare": "husky install",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix packages"
+  },
+  "lint-staged": {
+    "packages/**/*.{ts,vue}": "eslint --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "eslint": "^8.31.0",
-    "eslint-config-prettier": "^8.6.0",
-    "prettier": "^2.8.1",
+  "dependencies": {
     "typescript": "^4.9.4"
   },
-  "dependencies": {}
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.9.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.1"
+  }
 }
