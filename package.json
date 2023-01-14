@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "example": "cd ./packages/example && pnpm run dev",
+    "example": "pnpm -F @mometa-vue/example run dev",
+    "editor": "pnpm -F @mometa-vue/editor run build",
     "prepare": "husky install",
     "lint": "eslint",
     "lint:fix": "eslint --fix packages"

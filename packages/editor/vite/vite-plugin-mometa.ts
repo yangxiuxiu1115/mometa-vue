@@ -2,8 +2,9 @@ import { createFilter, PluginOption } from 'vite'
 
 import InjectMometaElement from './InjectMometaElement'
 import InjectMometaSFC from './InjectMometaSFC'
+import MometaMiddleware from './MometaMiddleware'
 
-const Mometa = function (customOptions: {}): PluginOption {
+const Mometa = function (customOptions: object): PluginOption {
   const vueOptions = {
     include: [/vue\.js\?v=\d+/],
     exclude: []
@@ -20,6 +21,9 @@ const Mometa = function (customOptions: {}): PluginOption {
   return {
     name: 'vite-plugin-mometa',
     apply: 'serve',
+    configureServer(server) {
+      server.middlewares.use(MometaMiddleware)
+    },
     transform(src: string, id: string) {
       const isVue = filterVue(id)
       const isSFC = filterSFC(id)
