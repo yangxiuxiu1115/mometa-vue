@@ -6,7 +6,7 @@ import MometaMiddleware from './MometaMiddleware'
 
 const Mometa = function (customOptions: object): PluginOption {
   const vueOptions = {
-    include: [/vue\.js\?v=\d+/],
+    include: [/vue\.js\?v=\d+$/],
     exclude: []
   }
 

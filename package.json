@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "example": "pnpm -F @mometa-vue/example run dev",
-    "editor": "pnpm -F @mometa-vue/editor run build",
+    "editor": "pnpm -F @mometa-vue/editor run dev",
     "prepare": "husky install",
     "lint": "eslint",
     "lint:fix": "eslint --fix packages"
