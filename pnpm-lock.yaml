@@ -37,6 +37,7 @@ importers:
       '@babel/parser': ^7.20.7
       '@babel/traverse': ^7.20.12
       '@babel/types': ^7.20.7
+      '@element-plus/icons-vue': ^2.0.10
       '@vitejs/plugin-vue': ^4.0.0
       '@vue/compiler-sfc': ^3.2.45
       element-plus: ^2.2.28
@@ -48,6 +49,7 @@ importers:
       vue: ^3.2.45
       vue-tsc: ^1.0.11
     dependencies:
+      '@element-plus/icons-vue': 2.0.10_vue@3.2.45
       element-plus: 2.2.28_vue@3.2.45
       normalize.css: 8.0.1
       vue: 3.2.45
