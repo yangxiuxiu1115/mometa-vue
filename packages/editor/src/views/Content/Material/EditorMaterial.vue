@@ -1,15 +1,29 @@
 <template>
   <div class="editor-material">
-    <el-tabs>
+    <el-tabs :class="{ 'el-tabs_hidden': props.leftPanalCollapse }">
       <el-tab-pane label="Local Mat" name="Local Mat">Local Mat</el-tab-pane>
       <el-tab-pane label="Antd" name="Antd">Antd</el-tab-pane>
     </el-tabs>
-    <div class="colse"></div>
+    <div class="colse-btn" @click="handleCollapse">
+      <el-icon color="rgb(24, 144, 255)">
+        <DArrowRight v-if="props.leftPanalCollapse" />
+        <DArrowLeft v-else />
+      </el-icon>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
+
+const props = defineProps<{
+  leftPanalCollapse: boolean
+}>()
+const emits = defineEmits(['changeLeftPanalCollapse'])
+
+const handleCollapse = () => {
+  emits('changeLeftPanalCollapse', !props.leftPanalCollapse)
+}
 </script>
 
 <style scoped lang="less">
@@ -17,12 +31,26 @@ import { ref } from 'vue'
   margin-top: 5px;
   display: flex;
   height: calc(100% - 5px);
-  .el-tabs {
-    flex: 1;
+
+  .el-tabs.el-tabs_hidden {
+    width: 0;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    border: none;
   }
-  .colse {
+  .el-tabs {
+    overflow: hidden;
+    flex: 1;
+    opacity: 1;
+    transition: all ease 0.25s;
+  }
+  .colse-btn {
     width: 20px;
-    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 }
 </style>
