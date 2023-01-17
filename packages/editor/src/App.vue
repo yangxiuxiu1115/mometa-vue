@@ -40,10 +40,17 @@ const changeLeftPanalCollapse = (val: boolean) => {
 <style scoped lang="less">
 .el-header {
   padding: 0;
+  z-index: 1;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 12%), 0 0 6px 0 rgb(0 0 0 / 4%);
 }
-.editor-left-panal {
+.el-aside {
   box-shadow: 0 0 6px 0 rgb(0 0 0 / 4%), 0 2px 4px 0 rgb(0 0 0 / 12%);
+  z-index: 1;
+}
+.editor-left-panal {
   transition: width 0.25s linear;
+}
+.el-main {
+  padding: 0;
 }
 </style>

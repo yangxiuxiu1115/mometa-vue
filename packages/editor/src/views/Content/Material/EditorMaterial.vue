@@ -28,9 +28,8 @@ const handleCollapse = () => {
 
 <style scoped lang="less">
 .editor-material {
-  margin-top: 5px;
   display: flex;
-  height: calc(100% - 5px);
+  height: 100%;
 
   .el-tabs.el-tabs_hidden {
     width: 0;
@@ -44,6 +43,7 @@ const handleCollapse = () => {
     flex: 1;
     opacity: 1;
     transition: all ease 0.25s;
+    --el-tabs-header-height: 45px;
   }
   .colse-btn {
     width: 20px;
