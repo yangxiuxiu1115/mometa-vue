@@ -1,18 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 import EditorHeader from './views/Header/EditorHeader.vue'
 import { EditorAttribute, EditorMaterial, EditorStage } from './views/Content'
 
 import { useProvider } from '@/hooks/useProvider'
+import useState from '@/hooks/useState'
 
 useProvider('isEdit', true)
 useProvider('showAddress', true)
 
-const leftPanalCollapse = ref(false)
-const changeLeftPanalCollapse = (val: boolean) => {
-  leftPanalCollapse.value = val
-}
+const [leftPanalCollapse, changeLeftPanalCollapse] = useState<boolean>(false)
+const [rightPanalCollapse, changeRightPanalCollapse] = useState<boolean>(false)
 </script>
 
 <template>
@@ -21,7 +18,7 @@ const changeLeftPanalCollapse = (val: boolean) => {
       <EditorHeader />
     </el-header>
     <el-container>
-      <el-aside :width="leftPanalCollapse ? '20px' : '300px'" class="editor-left-panal">
+      <el-aside :width="leftPanalCollapse ? '20px' : '300px'" class="panal-transition">
         <EditorMaterial
           :left-panal-collapse="leftPanalCollapse"
           @change-left-panal-collapse="changeLeftPanalCollapse"
@@ -30,8 +27,11 @@ const changeLeftPanalCollapse = (val: boolean) => {
       <el-main>
         <EditorStage />
       </el-main>
-      <el-aside width="300px">
-        <EditorAttribute />
+      <el-aside :width="rightPanalCollapse ? '20px' : '300px'" class="panal-transition">
+        <EditorAttribute
+          :right-panal-collapse="rightPanalCollapse"
+          @change-right-panal-collapse="changeRightPanalCollapse"
+        />
       </el-aside>
     </el-container>
   </el-container>
@@ -47,7 +47,7 @@ const changeLeftPanalCollapse = (val: boolean) => {
   box-shadow: 0 0 6px 0 rgb(0 0 0 / 4%), 0 2px 4px 0 rgb(0 0 0 / 12%);
   z-index: 1;
 }
-.editor-left-panal {
+.panal-transition {
   transition: width 0.25s linear;
 }
 .el-main {
