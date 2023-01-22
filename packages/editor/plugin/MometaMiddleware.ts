@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs'
-import path from 'path'
+import { readFileSync } from 'node:fs'
+import path from 'node:path'
 import type { Connect } from 'vite'
 
 const MometaMiddleware: Connect.NextHandleFunction = (req, res, next) => {

@@ -6,12 +6,16 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+const resolve = (str: string) => {
+  return path.join(__dirname, str)
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
   resolve: {
     alias: {
-      '@': path.join(__dirname, './src')
+      '@': resolve('./src')
     }
   },
   plugins: [
