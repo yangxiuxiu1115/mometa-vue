@@ -1,5 +1,6 @@
 {
   "name": "mometa-vue",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,7 +20,7 @@
     "packages/**/*.{ts,vue}": "eslint --fix"
   },
   "keywords": [],
-  "author": "",
+  "author": "yangxiuxiu",
   "license": "ISC",
   "dependencies": {
     "typescript": "^4.9.4",

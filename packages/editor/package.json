@@ -14,7 +14,13 @@
     "prepublishOnly": "pnpm run build"
   },
   "keywords": [],
-  "author": "",
+  "exports": {
+    "./plugin": {
+      "import": "./vite-plugin/index.mjs",
+      "require": "./vite-plugin/index.js"
+    }
+  },
+  "author": "yangxiuxiu",
   "license": "ISC",
   "dependencies": {
     "@babel/generator": "^7.20.7",
