@@ -17,7 +17,10 @@
     "test:dev": "vitest dev"
   },
   "lint-staged": {
-    "packages/**/*.{ts,vue}": "eslint --fix"
+    "packages/**/*.{ts,vue}": [
+      "eslint --fix",
+      "pnpm run test"
+    ]
   },
   "keywords": [],
   "author": "yangxiuxiu",

@@ -15,7 +15,6 @@ describe('test injectMometaSFC', () => {
 
   it('VFor element', () => {
     const VForSFC = injectMometaSFC(VFor)
-    console.log(VForSFC)
     expect(VForSFC).toBe(VForTest)
   })
 })
