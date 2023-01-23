@@ -1,6 +1,10 @@
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import type { Connect } from 'vite'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const MometaMiddleware: Connect.NextHandleFunction = (req, res, next) => {
   const dist = path.join(__dirname, '../dist')

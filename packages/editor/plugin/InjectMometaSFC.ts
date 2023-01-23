@@ -28,7 +28,8 @@ const InjectMometaSFC = (source: string): string => {
 
       const mometa = {
         start: node.loc.start,
-        end: node.loc.end
+        end: node.loc.end,
+        isSelfClosing: node.isSelfClosing
       }
 
       const begain = start.column + node.tag.length
