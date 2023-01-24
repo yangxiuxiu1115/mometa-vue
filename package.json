@@ -19,7 +19,7 @@
   "lint-staged": {
     "packages/**/*.{ts,vue}": [
       "eslint --fix",
-      "pnpm run test"
+      "pnpm run typecheck"
     ]
   },
   "keywords": [],

@@ -3,18 +3,19 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { Connect } from 'vite'
 
+const MOMETAURL = '__mometa'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+const resolve = (...paths: string[]) => path.join(__dirname, ...paths)
 
 const MometaMiddleware: Connect.NextHandleFunction = (req, res, next) => {
-  const dist = path.join(__dirname, '../dist')
-  if (req.url === '/__mometa') {
-    const mometa = readFileSync(path.join(__dirname, '../dist/index.html'))
+  if (req.url === `/${MOMETAURL}`) {
+    const mometa = readFileSync(resolve(`../${MOMETAURL}/index.html`))
     res.end(mometa)
     return
   }
-  try {
-    const assets = `${dist}${req.url}`
+  if (req.url?.startsWith(`/${MOMETAURL}`)) {
+    const assets = resolve(`..${req.url}`)
     const file = readFileSync(assets)
     if (/\.svg$/.test(assets)) {
       res.setHeader('Content-Type', 'image/svg+xml')
@@ -27,7 +28,7 @@ const MometaMiddleware: Connect.NextHandleFunction = (req, res, next) => {
     }
     res.end(file)
     return
-  } catch (error) {}
+  }
   next()
 }
 

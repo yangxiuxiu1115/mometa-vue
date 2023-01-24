@@ -12,11 +12,14 @@ const resolve = (str: string) => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/__mometa',
   resolve: {
     alias: {
       '@': resolve('./src')
     }
+  },
+  build: {
+    outDir: '__mometa'
   },
   plugins: [
     vue(),
