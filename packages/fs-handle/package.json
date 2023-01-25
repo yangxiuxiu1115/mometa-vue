@@ -1,0 +1,12 @@
+{
+  "name": "@lowcode/fs-handle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build": "esno ../../scripts/build-plugin.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
