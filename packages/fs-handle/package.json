@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "esno ../../scripts/build-plugin.ts"
+    "build": "esno ./scripts/build.ts"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.18"
+  }
 }

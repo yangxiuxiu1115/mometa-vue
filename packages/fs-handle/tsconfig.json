@@ -8,5 +8,5 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "moduleResolution": "Node"
   },
-  "include": ["src/**/*.ts", "src/*.ts"]
+  "include": ["src/**/*.ts", "src/*.ts", "scripts/*.ts"]
 }
