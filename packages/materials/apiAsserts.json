@@ -6,9 +6,9 @@
         { "属性名": "size", "说明": "尺寸", "类型": "enum", "默认值": "—" },
         { "属性名": "type", "说明": "类型", "类型": "enum", "默认值": "—" },
         { "属性名": "plain", "说明": "是否为朴素按钮", "类型": "boolean", "默认值": "false" },
-        { "属性名": "text2.2.0", "说明": "是否为文字按钮", "类型": "boolean", "默认值": "false" },
-        { "属性名": "bg2.2.0", "说明": "是否显示文字按钮背景颜色", "类型": "boolean", "默认值": "false" },
-        { "属性名": "link 2.2.1", "说明": "是否为链接按钮", "类型": "boolean", "默认值": "false" },
+        { "属性名": "text", "说明": "是否为文字按钮", "类型": "boolean", "默认值": "false" },
+        { "属性名": "bg", "说明": "是否显示文字按钮背景颜色", "类型": "boolean", "默认值": "false" },
+        { "属性名": "link ", "说明": "是否为链接按钮", "类型": "boolean", "默认值": "false" },
         { "属性名": "round", "说明": "是否为圆角按钮", "类型": "boolean", "默认值": "false" },
         { "属性名": "circle", "说明": "是否为圆形按钮", "类型": "boolean", "默认值": "false" },
         { "属性名": "loading", "说明": "是否为加载中状态", "类型": "boolean", "默认值": "false" },
@@ -519,7 +519,7 @@
         { "属性名": "tabindex", "说明": "输入框的 tabindex", "类型": "string / number", "默认值": "—" },
         { "属性名": "id", "说明": "input id", "类型": "string", "默认值": "—" },
         {
-          "属性名": "controls a11y",
+          "属性名": "controls ",
           "说明": "与 aria-control一致, 当 indeterminate为 true时生效",
           "类型": "boolean",
           "默认值": "—"
@@ -572,7 +572,7 @@
         { "属性名": "predefine", "说明": "预定义颜色", "类型": "object", "预设值": "—" },
         { "属性名": "validate-event", "说明": "输入时是否触发表单的校验", "类型": "boolean", "预设值": "true" },
         { "属性名": "tabindex", "说明": "ColorPicker 的 tabindex", "类型": "string / number", "预设值": "0" },
-        { "属性名": "labela11y", "说明": "ColorPicker 的 aria-label", "类型": "string", "预设值": "—" },
+        { "属性名": "label", "说明": "ColorPicker 的 aria-label", "类型": "string", "预设值": "—" },
         { "属性名": "id", "说明": "ColorPicker 的 id", "类型": "string", "预设值": "—" }
       ],
       "colorpicker-事件": [
@@ -1119,7 +1119,7 @@
         { "属性名": "resize", "说明": "控制是否能被用户缩放", "类型": "enum", "默认值": "—" },
         { "属性名": "autofocus", "说明": "原生属性，自动获取焦点", "类型": "boolean", "默认值": "false" },
         { "属性名": "form", "说明": "原生属性", "类型": "string", "默认值": "—" },
-        { "属性名": "labela11y", "说明": "等价于原生 input aria-label 属性", "类型": "string", "默认值": "—" },
+        { "属性名": "label", "说明": "等价于原生 input aria-label 属性", "类型": "string", "默认值": "—" },
         { "属性名": "tabindex", "说明": "输入框的 tabindex", "类型": "string / number", "默认值": "—" },
         { "属性名": "validate-event", "说明": "输入时是否触发表单的校验", "类型": "boolean", "默认值": "true" },
         {
@@ -1611,7 +1611,7 @@
           "默认值": "ArrowDown"
         },
         {
-          "属性名": "suffix-transitiondeprecated",
+          "属性名": "suffix-transition",
           "说明": "下拉菜单显示/消失时后缀图标的动画",
           "类型": "boolean",
           "可选值": "true / false",
@@ -2663,7 +2663,7 @@
           "默认值": "false"
         },
         {
-          "属性名": "loading2.2.3",
+          "属性名": "loading",
           "说明": "浏览器加载图像的策略，和 浏览器原生能力一致",
           "类型": "'eager' | 'lazy'",
           "默认值": "—"
@@ -3099,7 +3099,7 @@
           "默认值": "dark"
         },
         {
-          "属性名": "tooltip-options2.2.28",
+          "属性名": "tooltip-options",
           "说明": "溢出 tooltip 的选项，参见下述 tooltip 组件",
           "类型": "object",
           "可选值": "请参考 tooltip",
@@ -3164,7 +3164,7 @@
           "可选值": "—",
           "默认值": "false"
         },
-        { "属性名": "flexible2.2.1", "说明": "确保主轴的最小尺寸", "类型": "boolean", "可选值": "—", "默认值": "false" }
+        { "属性名": "flexible", "说明": "确保主轴的最小尺寸", "类型": "boolean", "可选值": "—", "默认值": "false" }
       ],
       "table-事件": [
         { "事件名": "select", "说明": "当用户手动勾选数据行的 Checkbox 时触发的事件", "回调参数": "selection, row" },
@@ -3380,7 +3380,7 @@
           "属性名": "show-overflow-tooltip",
           "说明": "当内容过长被隐藏时显示 tooltip",
           "类型": "boolean \\",
-          "可选值": "object2.2.28",
+          "可选值": "object",
           "默认值": "参考表格的 tooltip-options"
         },
         {
@@ -4419,13 +4419,7 @@
           "可选值": "—",
           "默认值": "true"
         },
-        {
-          "属性名": "custom-classdeprecated",
-          "说明": "Dialog 的自定义类名",
-          "类型": "string",
-          "可选值": "—",
-          "默认值": "—"
-        },
+        { "属性名": "custom-class", "说明": "Dialog 的自定义类名", "类型": "string", "可选值": "—", "默认值": "—" },
         {
           "属性名": "open-delay",
           "说明": "Dialog 打开的延时时间，单位毫秒",
@@ -4494,7 +4488,7 @@
       "插槽": [
         { "插槽名": "—", "说明": "Dialog 的内容" },
         { "插槽名": "header", "说明": "对话框标题的内容；会替换标题部分，但不会移除关闭按钮。" },
-        { "插槽名": "titledeprecated", "说明": "与 header 作用相同 请使用 header" },
+        { "插槽名": "title", "说明": "与 header 作用相同 请使用 header" },
         { "插槽名": "footer", "说明": "Dialog 按钮操作区的内容" }
       ],
       "事件": [
@@ -4567,13 +4561,7 @@
           "可选值": "—",
           "默认值": "0"
         },
-        {
-          "属性名": "custom-classdeprecated",
-          "说明": "Drawer 的自定义类名",
-          "类型": "string",
-          "可选值": "—",
-          "默认值": "—"
-        },
+        { "属性名": "custom-class", "说明": "Drawer 的自定义类名", "类型": "string", "可选值": "—", "默认值": "—" },
         {
           "属性名": "destroy-on-close",
           "说明": "控制是否在关闭 Drawer 之后将子元素全部销毁",
@@ -4617,7 +4605,7 @@
       "drawer-插槽": [
         { "插槽名": "—", "说明": "Drawer 的内容" },
         { "插槽名": "header", "说明": "Drawer 标题的内容；会替换标题部分，但不会移除关闭按钮。" },
-        { "插槽名": "titledeprecated", "说明": "与 header 作用相同 请使用 header" },
+        { "插槽名": "title", "说明": "与 header 作用相同 请使用 header" },
         { "插槽名": "footer", "说明": "Drawer 页脚部分" }
       ],
       "drawer-方法": [{ "名称": "handleClose", "说明": "用于关闭 Drawer, 该方法会调用传入的 before-close 方法" }],

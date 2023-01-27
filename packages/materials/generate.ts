@@ -60,7 +60,11 @@ const BASEURL = 'https://element-plus.gitee.io/zh-CN/component'
           $(tr)
             .find('td')
             .each((index, td) => {
-              temp[thead[index]] = $(td).text()
+              const text = [...$(td).contents()]
+                .filter((e) => !$(e).hasClass('el-tag'))
+                .map((e) => $(e).text())
+                .join('')
+              temp[thead[index]] = text
             })
           assert.push(temp)
         })
