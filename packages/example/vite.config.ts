@@ -5,6 +5,8 @@ import Inspect from 'vite-plugin-inspect'
 import Mometa from '../editor/plugin'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [Mometa({}), vue(), Inspect()]
+export default defineConfig(({}) => {
+  return {
+    plugins: [Mometa({}), vue(), Inspect()]
+  }
 })
