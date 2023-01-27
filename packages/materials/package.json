@@ -1,0 +1,19 @@
+{
+  "name": "@lowcode/materials",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "generate": "esno ./generate.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "cheerio": "1.0.0-rc.12"
+  }
+}
