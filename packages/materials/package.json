@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "generate": "esno ./generate.ts"
+    "generate": "esno ./generate.ts",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
