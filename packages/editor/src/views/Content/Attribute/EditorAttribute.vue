@@ -51,7 +51,6 @@ const handleCollapse = () => {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-right: 2px solid var(--el-border-color-light);
   }
 }
 </style>

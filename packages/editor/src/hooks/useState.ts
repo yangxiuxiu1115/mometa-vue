@@ -5,7 +5,6 @@ type BaseType = number | boolean | string
 const useState = <T extends BaseType>(val: T) => {
   const state = ref(val)
   const handle = (val: UnwrapRef<T>) => {
-    console.log(val, state)
     state.value = val
   }
 

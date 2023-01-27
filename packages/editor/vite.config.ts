@@ -11,23 +11,25 @@ const resolve = (str: string) => {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  base: '/__mometa',
-  resolve: {
-    alias: {
-      '@': resolve('./src')
-    }
-  },
-  build: {
-    outDir: '__mometa'
-  },
-  plugins: [
-    vue(),
-    AutoImport({
-      resolvers: [ElementPlusResolver()]
-    }),
-    Components({
-      resolvers: [ElementPlusResolver()]
-    })
-  ]
+export default defineConfig(({ command }) => {
+  return {
+    base: '/',
+    resolve: {
+      alias: {
+        '@': resolve('./src')
+      }
+    },
+    build: {
+      outDir: '__mometa'
+    },
+    plugins: [
+      vue(),
+      AutoImport({
+        resolvers: [ElementPlusResolver()]
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()]
+      })
+    ]
+  }
 })
