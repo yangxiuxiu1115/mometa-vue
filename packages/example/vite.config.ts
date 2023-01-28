@@ -1,8 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Inspect from 'vite-plugin-inspect'
-// @ts-ignore
-import Mometa from '../editor/plugin'
+import Mometa from '@mometa-vue/editor'
 
 // https://vitejs.dev/config/
 export default defineConfig(({}) => {
