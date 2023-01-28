@@ -1,76 +1,50 @@
-import { writeFileSync } from 'node:fs'
 import path from 'node:path'
-
-import axios from 'axios'
+import { writeFileSync, readFileSync } from 'node:fs'
 import { load } from 'cheerio'
 
+import { material, assertGroup } from './src/index'
+import { Assert, AssertGroup } from './src/type'
 const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths)
-const BASEURL = 'https://element-plus.gitee.io/zh-CN/component'
 
 ;(async function () {
-  const req = await axios.get(`${BASEURL}/button.html`)
-  let $ = load(req.data)
-  const group: any[] = []
-  const apiGroup: string[] = []
-  $('.sidebar-groups .sidebar-group').each((index, e) => {
-    const groupTitle = $(e).find('.sidebar-group__title').text()
-    const assets: any[] = []
+  const htmlText = readFileSync(resolve('./overview.html'), { encoding: 'utf-8' })
+  const $ = load(htmlText)
+  const assertGroups: AssertGroup[] = []
+  const mat = material('AntdV', 'AntdV', assertGroups)
 
-    group.push({
-      groupTitle,
-      assets
-    })
+  const components = $('.components-overview').filter((i) => !!i)
+  components.each((_, component) => {
+    const assertGroupTitle = $(component)
+      .find('.components-overview-group-title .ant-space .ant-space-item:first-child')
+      .text()
+      .trim()
 
-    $(e)
-      .find('a.link')
-      .each((i, component) => {
-        const text = $(component).text()
-        assets.push(text)
-        apiGroup.push(text.split(' ').slice(0, -1).join('-').toLowerCase())
+    const assert: Assert[] = []
+    assertGroups.push(assertGroup(assertGroupTitle, assertGroupTitle, assert))
+
+    $(component)
+      .find('.ant-row .ant-col')
+      .each((_, col) => {
+        const [key, name] = $(col).find('.ant-card .components-overview-title').text().split(' ')
+        const src = $(col).find('.ant-card .components-overview-img img').attr('src')!
+        const homepage = $(col).find('a[href]').attr('href')
+        assert.push({
+          name,
+          key,
+          homepage: `https://www.antdv.com${homepage}`,
+          cover: src,
+          data: {
+            code: `<$${key}$ />`,
+            dependencies: {
+              [key]: {
+                package: 'AntdV',
+                mode: 'default'
+              }
+            }
+          }
+        })
       })
   })
 
-  writeFileSync(resolve('./asserts.json'), JSON.stringify(group))
-
-  const apiUrl = (api: string) => {
-    return `${BASEURL}/${api}`
-  }
-
-  const apiAsserts: any[] = []
-  for (const api of apiGroup) {
-    console.log('====================================')
-    console.log(`正在获取${api}属性设置信息`)
-    console.log('====================================')
-    try {
-      if (api === 'icon') continue
-      const res = await axios.get(apiUrl(api))
-      $ = load(res.data)
-      const apiAssert: any = { name: api, assert: {} }
-      $('div.vp-table').each((_, api) => {
-        const id = $(api).prev().attr('id')!
-        const assert: any[] = []
-        apiAssert.assert[id] = assert
-        const table = $(api)
-        const thead: string[] = []
-        table.find('table thead tr th').each((_, th) => {
-          thead.push($(th).text())
-        })
-        table.find('table tbody tr').each((ind, tr) => {
-          const temp: any = {}
-          $(tr)
-            .find('td')
-            .each((index, td) => {
-              const text = [...$(td).contents()]
-                .filter((e) => !$(e).hasClass('el-tag'))
-                .map((e) => $(e).text())
-                .join('')
-              temp[thead[index]] = text
-            })
-          assert.push(temp)
-        })
-      })
-      apiAsserts.push(apiAssert)
-    } catch {}
-  }
-  writeFileSync(resolve('./apiAsserts.json'), JSON.stringify(apiAsserts))
+  writeFileSync(resolve('./AntdV.json'), JSON.stringify(mat, null, 2))
 })()

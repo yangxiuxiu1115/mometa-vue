@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "generate": "esno ./generate.ts",
+    "generateHTML": "esno ./generate-html.ts",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [],

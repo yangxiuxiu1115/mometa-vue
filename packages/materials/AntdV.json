@@ -1,0 +1,993 @@
+{
+  "name": "AntdV",
+  "key": "AntdV",
+  "assertGroups": [
+    {
+      "name": "通用",
+      "key": "通用",
+      "asserts": [
+        {
+          "name": "按钮",
+          "key": "Button",
+          "homepage": "https://www.antdv.com/components/button-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/fNUKzY1sk/Button.svg",
+          "data": {
+            "code": "<$Button$ />",
+            "dependencies": {
+              "Button": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "图标",
+          "key": "Icon",
+          "homepage": "https://www.antdv.com/components/icon-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/rrwbSt3FQ/Icon.svg",
+          "data": {
+            "code": "<$Icon$ />",
+            "dependencies": {
+              "Icon": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "排版",
+          "key": "Typography",
+          "homepage": "https://www.antdv.com/components/typography-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg",
+          "data": {
+            "code": "<$Typography$ />",
+            "dependencies": {
+              "Typography": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "布局",
+      "key": "布局",
+      "asserts": [
+        {
+          "name": "分割线",
+          "key": "Divider",
+          "homepage": "https://www.antdv.com/components/divider-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/5swjECahe/Divider.svg",
+          "data": {
+            "code": "<$Divider$ />",
+            "dependencies": {
+              "Divider": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "栅格",
+          "key": "Grid",
+          "homepage": "https://www.antdv.com/components/grid-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/5rWLU27so/Grid.svg",
+          "data": {
+            "code": "<$Grid$ />",
+            "dependencies": {
+              "Grid": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "布局",
+          "key": "Layout",
+          "homepage": "https://www.antdv.com/components/layout-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/hzEndUVEx/Layout.svg",
+          "data": {
+            "code": "<$Layout$ />",
+            "dependencies": {
+              "Layout": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "间距",
+          "key": "Space",
+          "homepage": "https://www.antdv.com/components/space-cn",
+          "cover": "https://gw.alipayobjects.com/zos/antfincdn/wc6%263gJ0Y8/Space.svg",
+          "data": {
+            "code": "<$Space$ />",
+            "dependencies": {
+              "Space": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "导航",
+      "key": "导航",
+      "asserts": [
+        {
+          "name": "固钉",
+          "key": "Affix",
+          "homepage": "https://www.antdv.com/components/affix-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg",
+          "data": {
+            "code": "<$Affix$ />",
+            "dependencies": {
+              "Affix": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "面包屑",
+          "key": "Breadcrumb",
+          "homepage": "https://www.antdv.com/components/breadcrumb-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/9Ltop8JwH/Breadcrumb.svg",
+          "data": {
+            "code": "<$Breadcrumb$ />",
+            "dependencies": {
+              "Breadcrumb": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "下拉菜单",
+          "key": "Dropdown",
+          "homepage": "https://www.antdv.com/components/dropdown-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/eedWN59yJ/Dropdown.svg",
+          "data": {
+            "code": "<$Dropdown$ />",
+            "dependencies": {
+              "Dropdown": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "导航菜单",
+          "key": "Menu",
+          "homepage": "https://www.antdv.com/components/menu-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/3XZcjGpvK/Menu.svg",
+          "data": {
+            "code": "<$Menu$ />",
+            "dependencies": {
+              "Menu": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "页头",
+          "key": "PageHeader",
+          "homepage": "https://www.antdv.com/components/page-header-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/6bKE0Cq0R/PageHeader.svg",
+          "data": {
+            "code": "<$PageHeader$ />",
+            "dependencies": {
+              "PageHeader": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "分页",
+          "key": "Pagination",
+          "homepage": "https://www.antdv.com/components/pagination-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/1vqv2bj68/Pagination.svg",
+          "data": {
+            "code": "<$Pagination$ />",
+            "dependencies": {
+              "Pagination": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "步骤条",
+          "key": "Steps",
+          "homepage": "https://www.antdv.com/components/steps-cn",
+          "cover": "https://gw.alipayobjects.com/zos/antfincdn/UZYqMizXHaj/Steps.svg",
+          "data": {
+            "code": "<$Steps$ />",
+            "dependencies": {
+              "Steps": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "数据录入",
+      "key": "数据录入",
+      "asserts": [
+        {
+          "name": "自动完成",
+          "key": "AutoComplete",
+          "homepage": "https://www.antdv.com/components/auto-complete-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/qtJm4yt45/AutoComplete.svg",
+          "data": {
+            "code": "<$AutoComplete$ />",
+            "dependencies": {
+              "AutoComplete": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "级联选择",
+          "key": "Cascader",
+          "homepage": "https://www.antdv.com/components/cascader-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/UdS8y8xyZ/Cascader.svg",
+          "data": {
+            "code": "<$Cascader$ />",
+            "dependencies": {
+              "Cascader": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "多选框",
+          "key": "Checkbox",
+          "homepage": "https://www.antdv.com/components/checkbox-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/8nbVbHEm_/CheckBox.svg",
+          "data": {
+            "code": "<$Checkbox$ />",
+            "dependencies": {
+              "Checkbox": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "日期选择框",
+          "key": "DatePicker",
+          "homepage": "https://www.antdv.com/components/date-picker-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/RT_USzA48/DatePicker.svg",
+          "data": {
+            "code": "<$DatePicker$ />",
+            "dependencies": {
+              "DatePicker": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "表单",
+          "key": "Form",
+          "homepage": "https://www.antdv.com/components/form-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg",
+          "data": {
+            "code": "<$Form$ />",
+            "dependencies": {
+              "Form": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "输入框",
+          "key": "Input",
+          "homepage": "https://www.antdv.com/components/input-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/xS9YEJhfe/Input.svg",
+          "data": {
+            "code": "<$Input$ />",
+            "dependencies": {
+              "Input": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "数字输入框",
+          "key": "InputNumber",
+          "homepage": "https://www.antdv.com/components/input-number-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/XOS8qZ0kU/InputNumber.svg",
+          "data": {
+            "code": "<$InputNumber$ />",
+            "dependencies": {
+              "InputNumber": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "提及",
+          "key": "Mentions",
+          "homepage": "https://www.antdv.com/components/mentions-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/jPE-itMFM/Mentions.svg",
+          "data": {
+            "code": "<$Mentions$ />",
+            "dependencies": {
+              "Mentions": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "单选框",
+          "key": "Radio",
+          "homepage": "https://www.antdv.com/components/radio-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/8cYb5seNB/Radio.svg",
+          "data": {
+            "code": "<$Radio$ />",
+            "dependencies": {
+              "Radio": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "评分",
+          "key": "Rate",
+          "homepage": "https://www.antdv.com/components/rate-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/R5uiIWmxe/Rate.svg",
+          "data": {
+            "code": "<$Rate$ />",
+            "dependencies": {
+              "Rate": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "选择器",
+          "key": "Select",
+          "homepage": "https://www.antdv.com/components/select-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/_0XzgOis7/Select.svg",
+          "data": {
+            "code": "<$Select$ />",
+            "dependencies": {
+              "Select": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "滑动输入条",
+          "key": "Slider",
+          "homepage": "https://www.antdv.com/components/slider-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/HZ3meFc6W/Silder.svg",
+          "data": {
+            "code": "<$Slider$ />",
+            "dependencies": {
+              "Slider": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "开关",
+          "key": "Switch",
+          "homepage": "https://www.antdv.com/components/switch-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/zNdJQMhfm/Switch.svg",
+          "data": {
+            "code": "<$Switch$ />",
+            "dependencies": {
+              "Switch": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "时间选择框",
+          "key": "TimePicker",
+          "homepage": "https://www.antdv.com/components/time-picker-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/h04Zsl98I/TimePicker.svg",
+          "data": {
+            "code": "<$TimePicker$ />",
+            "dependencies": {
+              "TimePicker": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "穿梭框",
+          "key": "Transfer",
+          "homepage": "https://www.antdv.com/components/transfer-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/QAXskNI4G/Transfer.svg",
+          "data": {
+            "code": "<$Transfer$ />",
+            "dependencies": {
+              "Transfer": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "树选择",
+          "key": "TreeSelect",
+          "homepage": "https://www.antdv.com/components/tree-select-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/Ax4DA0njr/TreeSelect.svg",
+          "data": {
+            "code": "<$TreeSelect$ />",
+            "dependencies": {
+              "TreeSelect": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "上传",
+          "key": "Upload",
+          "homepage": "https://www.antdv.com/components/upload-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg",
+          "data": {
+            "code": "<$Upload$ />",
+            "dependencies": {
+              "Upload": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "数据展示",
+      "key": "数据展示",
+      "asserts": [
+        {
+          "name": "头像",
+          "key": "Avatar",
+          "homepage": "https://www.antdv.com/components/avatar-cn",
+          "cover": "https://gw.alipayobjects.com/zos/antfincdn/aBcnbw68hP/Avatar.svg",
+          "data": {
+            "code": "<$Avatar$ />",
+            "dependencies": {
+              "Avatar": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "徽标数",
+          "key": "Badge",
+          "homepage": "https://www.antdv.com/components/badge-cn",
+          "cover": "https://gw.alipayobjects.com/zos/antfincdn/6%26GF9WHwvY/Badge.svg",
+          "data": {
+            "code": "<$Badge$ />",
+            "dependencies": {
+              "Badge": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "日历",
+          "key": "Calendar",
+          "homepage": "https://www.antdv.com/components/calendar-cn",
+          "cover": "https://gw.alipayobjects.com/zos/antfincdn/dPQmLq08DI/Calendar.svg",
+          "data": {
+            "code": "<$Calendar$ />",
+            "dependencies": {
+              "Calendar": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "卡片",
+          "key": "Card",
+          "homepage": "https://www.antdv.com/components/card-cn",
+          "cover": "https://gw.alipayobjects.com/zos/antfincdn/NqXt8DJhky/Card.svg",
+          "data": {
+            "code": "<$Card$ />",
+            "dependencies": {
+              "Card": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "走马灯",
+          "key": "Carousel",
+          "homepage": "https://www.antdv.com/components/carousel-cn",
+          "cover": "https://gw.alipayobjects.com/zos/antfincdn/%24C9tmj978R/Carousel.svg",
+          "data": {
+            "code": "<$Carousel$ />",
+            "dependencies": {
+              "Carousel": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "折叠面板",
+          "key": "Collapse",
+          "homepage": "https://www.antdv.com/components/collapse-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/IxH16B9RD/Collapse.svg",
+          "data": {
+            "code": "<$Collapse$ />",
+            "dependencies": {
+              "Collapse": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "评论",
+          "key": "Comment",
+          "homepage": "https://www.antdv.com/components/comment-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/ILhxpGzBO/Comment.svg",
+          "data": {
+            "code": "<$Comment$ />",
+            "dependencies": {
+              "Comment": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "描述列表",
+          "key": "Descriptions",
+          "homepage": "https://www.antdv.com/components/descriptions-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/MjtG9_FOI/Descriptions.svg",
+          "data": {
+            "code": "<$Descriptions$ />",
+            "dependencies": {
+              "Descriptions": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "空状态",
+          "key": "Empty",
+          "homepage": "https://www.antdv.com/components/empty-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/MNbKfLBVb/Empty.svg",
+          "data": {
+            "code": "<$Empty$ />",
+            "dependencies": {
+              "Empty": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "图片",
+          "key": "Image",
+          "homepage": "https://www.antdv.com/components/image-cn",
+          "cover": "https://gw.alipayobjects.com/zos/antfincdn/D1dXz9PZqa/image.svg",
+          "data": {
+            "code": "<$Image$ />",
+            "dependencies": {
+              "Image": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "列表",
+          "key": "List",
+          "homepage": "https://www.antdv.com/components/list-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/5FrZKStG_/List.svg",
+          "data": {
+            "code": "<$List$ />",
+            "dependencies": {
+              "List": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "气泡卡片",
+          "key": "Popover",
+          "homepage": "https://www.antdv.com/components/popover-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/1PNL1p_cO/Popover.svg",
+          "data": {
+            "code": "<$Popover$ />",
+            "dependencies": {
+              "Popover": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "统计数值",
+          "key": "Statistic",
+          "homepage": "https://www.antdv.com/components/statistic-cn",
+          "cover": "https://gw.alipayobjects.com/zos/antfincdn/rcBNhLBrKbE/Statistic.svg",
+          "data": {
+            "code": "<$Statistic$ />",
+            "dependencies": {
+              "Statistic": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "表格",
+          "key": "Table",
+          "homepage": "https://www.antdv.com/components/table-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/f-SbcX2Lx/Table.svg",
+          "data": {
+            "code": "<$Table$ />",
+            "dependencies": {
+              "Table": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "标签页",
+          "key": "Tabs",
+          "homepage": "https://www.antdv.com/components/tabs-cn",
+          "cover": "https://gw.alipayobjects.com/zos/antfincdn/lkI2hNEDr2V/Tabs.svg",
+          "data": {
+            "code": "<$Tabs$ />",
+            "dependencies": {
+              "Tabs": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "标签",
+          "key": "Tag",
+          "homepage": "https://www.antdv.com/components/tag-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/cH1BOLfxC/Tag.svg",
+          "data": {
+            "code": "<$Tag$ />",
+            "dependencies": {
+              "Tag": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "时间轴",
+          "key": "Timeline",
+          "homepage": "https://www.antdv.com/components/timeline-cn",
+          "cover": "https://gw.alipayobjects.com/zos/antfincdn/vJmo00mmgR/Timeline.svg",
+          "data": {
+            "code": "<$Timeline$ />",
+            "dependencies": {
+              "Timeline": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "文字提示",
+          "key": "Tooltip",
+          "homepage": "https://www.antdv.com/components/tooltip-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg",
+          "data": {
+            "code": "<$Tooltip$ />",
+            "dependencies": {
+              "Tooltip": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "树形控件",
+          "key": "Tree",
+          "homepage": "https://www.antdv.com/components/tree-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/Xh-oWqg9k/Tree.svg",
+          "data": {
+            "code": "<$Tree$ />",
+            "dependencies": {
+              "Tree": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "反馈",
+      "key": "反馈",
+      "asserts": [
+        {
+          "name": "警告提示",
+          "key": "Alert",
+          "homepage": "https://www.antdv.com/components/alert-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg",
+          "data": {
+            "code": "<$Alert$ />",
+            "dependencies": {
+              "Alert": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "抽屉",
+          "key": "Drawer",
+          "homepage": "https://www.antdv.com/components/drawer-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/7z8NJQhFb/Drawer.svg",
+          "data": {
+            "code": "<$Drawer$ />",
+            "dependencies": {
+              "Drawer": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "全局提示",
+          "key": "Message",
+          "homepage": "https://www.antdv.com/components/message-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/hAkKTIW0K/Message.svg",
+          "data": {
+            "code": "<$Message$ />",
+            "dependencies": {
+              "Message": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "对话框",
+          "key": "Modal",
+          "homepage": "https://www.antdv.com/components/modal-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/3StSdUlSH/Modal.svg",
+          "data": {
+            "code": "<$Modal$ />",
+            "dependencies": {
+              "Modal": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "通知提醒框",
+          "key": "Notification",
+          "homepage": "https://www.antdv.com/components/notification-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/Jxm5nw61w/Notification.svg",
+          "data": {
+            "code": "<$Notification$ />",
+            "dependencies": {
+              "Notification": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "气泡确认框",
+          "key": "Popconfirm",
+          "homepage": "https://www.antdv.com/components/popconfirm-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/fjMCD9xRq/Popconfirm.svg",
+          "data": {
+            "code": "<$Popconfirm$ />",
+            "dependencies": {
+              "Popconfirm": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "进度条",
+          "key": "Progress",
+          "homepage": "https://www.antdv.com/components/progress-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/xqsDu4ZyR/Progress.svg",
+          "data": {
+            "code": "<$Progress$ />",
+            "dependencies": {
+              "Progress": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "结果",
+          "key": "Result",
+          "homepage": "https://www.antdv.com/components/result-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/9nepwjaLa/Result.svg",
+          "data": {
+            "code": "<$Result$ />",
+            "dependencies": {
+              "Result": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "骨架屏",
+          "key": "Skeleton",
+          "homepage": "https://www.antdv.com/components/skeleton-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/KpcciCJgv/Skeleton.svg",
+          "data": {
+            "code": "<$Skeleton$ />",
+            "dependencies": {
+              "Skeleton": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "加载中",
+          "key": "Spin",
+          "homepage": "https://www.antdv.com/components/spin-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg",
+          "data": {
+            "code": "<$Spin$ />",
+            "dependencies": {
+              "Spin": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "其他",
+      "key": "其他",
+      "asserts": [
+        {
+          "name": "锚点",
+          "key": "Anchor",
+          "homepage": "https://www.antdv.com/components/anchor-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/_1-C1JwsC/Anchor.svg",
+          "data": {
+            "code": "<$Anchor$ />",
+            "dependencies": {
+              "Anchor": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "回到顶部",
+          "key": "BackTop",
+          "homepage": "https://www.antdv.com/components/back-top-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/tJZ5jbTwX/BackTop.svg",
+          "data": {
+            "code": "<$BackTop$ />",
+            "dependencies": {
+              "BackTop": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        },
+        {
+          "name": "全局化配置",
+          "key": "ConfigProvider",
+          "homepage": "https://www.antdv.com/components/config-provider-cn",
+          "cover": "https://gw.alipayobjects.com/zos/alicdn/kegYxl1wj/ConfigProvider.svg",
+          "data": {
+            "code": "<$ConfigProvider$ />",
+            "dependencies": {
+              "ConfigProvider": {
+                "package": "AntdV",
+                "mode": "default"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
