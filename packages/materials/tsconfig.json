@@ -8,5 +8,5 @@
     "skipLibCheck": true,
     "moduleResolution": "node"
   },
-  "include": ["src/*.ts", "generate.ts", "generate-html.ts"]
+  "include": ["src/*.ts", "generate.ts", "generate-html.ts", "temp.ts"]
 }

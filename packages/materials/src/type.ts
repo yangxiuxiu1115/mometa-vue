@@ -12,9 +12,7 @@ export interface Assert {
   homepage: string
   data: {
     code: string
-    dependencies: {
-      [key in string]: AssertImport
-    }
+    dependencies: AssertImport[]
   }
 }
 

@@ -2,7 +2,7 @@ import path from 'node:path'
 import { writeFileSync, readFileSync } from 'node:fs'
 import { load } from 'cheerio'
 
-import { material, assertGroup } from './src/index'
+import { material, assertGroup } from './src/utils'
 import { Assert, AssertGroup } from './src/type'
 const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths)
 
@@ -35,12 +35,12 @@ const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths)
           cover: src,
           data: {
             code: `<$${key}$ />`,
-            dependencies: {
-              [key]: {
+            dependencies: [
+              {
                 package: 'AntdV',
                 mode: 'default'
               }
-            }
+            ]
           }
         })
       })
