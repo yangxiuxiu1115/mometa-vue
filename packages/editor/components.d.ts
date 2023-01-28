@@ -13,7 +13,6 @@ declare module '@vue/runtime-core' {
     ALayoutContent: typeof import('ant-design-vue/es')['LayoutContent']
     ALayoutHeader: typeof import('ant-design-vue/es')['LayoutHeader']
     ALayoutSider: typeof import('ant-design-vue/es')['LayoutSider']
-    APopover: typeof import('ant-design-vue/es')['Popover']
     ATabPane: typeof import('ant-design-vue/es')['TabPane']
     ATabs: typeof import('ant-design-vue/es')['Tabs']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']

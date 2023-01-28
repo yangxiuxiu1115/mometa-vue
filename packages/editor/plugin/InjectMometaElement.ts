@@ -1,9 +1,9 @@
 import { parse } from '@babel/parser'
 import types from '@babel/types'
-// @ts-ignore
 import traverse from '@babel/traverse'
-// @ts-ignore
 import generate from '@babel/generator'
+import type { Identifier, ArrowFunctionExpression, BlockStatement, VariableDeclarator } from '@babel/types'
+import type { NodePath } from '@babel/traverse'
 
 const InjectMometaElement = (source: string) => {
   const ast = parse(source, { sourceType: 'module' })
@@ -21,16 +21,17 @@ const InjectMometaElement = (source: string) => {
       types.expressionStatement(types.identifier('return'))
     ])
   )
-
   ;(traverse as any).default(ast, {
-    VariableDeclarator(path: any) {
-      if (path.get('id').node.name === 'patchProp') {
-        const node = path.get('init').get('body').node
+    VariableDeclarator(path: NodePath<VariableDeclarator>) {
+      const id = path.node.id as Identifier
+      if (id.name === 'patchProp') {
+        const init = path.get('init').node as ArrowFunctionExpression
+        const node = init.body as BlockStatement
         node.body.unshift(expression)
       }
     }
   })
-  return generate.default(ast).code
+  return (generate as any).default(ast).code
 }
 
 export default InjectMometaElement

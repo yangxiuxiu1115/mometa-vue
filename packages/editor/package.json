@@ -33,6 +33,8 @@
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
+    "@types/babel__generator": "^7.6.4",
+    "@types/babel__traverse": "^7.18.3",
     "@types/node": "^18.11.18",
     "less": "^4.1.3",
     "unplugin-auto-import": "^0.12.1",
