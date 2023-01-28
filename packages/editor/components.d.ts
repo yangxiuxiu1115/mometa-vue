@@ -16,5 +16,6 @@ declare module '@vue/runtime-core' {
     APopover: typeof import('ant-design-vue/es')['Popover']
     ATabPane: typeof import('ant-design-vue/es')['TabPane']
     ATabs: typeof import('ant-design-vue/es')['Tabs']
+    ATooltip: typeof import('ant-design-vue/es')['Tooltip']
   }
 }

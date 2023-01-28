@@ -1,25 +1,27 @@
 <template>
   <div class="editor-toolbar">
     <a-divider type="vertical" />
-    <a-popover content="编辑模式" placement="bottom">
-      <a-button size="small" shape="circle" :class="{ 'is-active': isEdit }" @click="changeIsEdit(!isEdit)">
+    <a-tooltip placement="bottom">
+      <template #title> 编辑模式 </template>
+      <a-button size="small" shape="circle" :type="isEdit ? 'primary' : 'default'" @click="changeIsEdit(!isEdit)">
         <template #icon>
           <edit-filled />
         </template>
       </a-button>
-    </a-popover>
-    <a-popover content="地址栏" placement="bottom">
+    </a-tooltip>
+    <a-tooltip placement="bottom">
+      <template #title> 地址栏 </template>
       <a-button
         size="small"
         shape="circle"
-        :class="{ 'is-active': showAddress }"
+        :type="showAddress ? 'primary' : 'default'"
         @click="changeShowAddress(!showAddress)"
       >
         <template #icon>
           <link-outlined />
         </template>
       </a-button>
-    </a-popover>
+    </a-tooltip>
     <a-divider type="vertical" />
     <a-button type="link">在新窗口打开</a-button>
   </div>

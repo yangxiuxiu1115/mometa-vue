@@ -5,8 +5,8 @@
       <a-tab-pane key="Antd" tab="Antd">Antd</a-tab-pane>
     </a-tabs>
     <div class="colse-btn" @click="handleCollapse">
-      <DoubleLeftOutlined v-if="props.leftPanalCollapse" :style="{ color: 'rgb(24, 144, 255)' }" />
-      <DoubleRightOutlined v-else :style="{ color: 'rgb(24, 144, 255)' }" />
+      <DoubleRightOutlined v-if="props.leftPanalCollapse" :style="{ color: 'rgb(24, 144, 255)' }" />
+      <DoubleLeftOutlined v-else :style="{ color: 'rgb(24, 144, 255)' }" />
     </div>
   </div>
 </template>
