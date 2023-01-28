@@ -13,44 +13,47 @@ const [rightPanalCollapse, changeRightPanalCollapse] = useState<boolean>(false)
 </script>
 
 <template>
-  <el-container style="height: 100%">
-    <el-header height="40px">
+  <a-layout style="height: 100%">
+    <a-layout-header>
       <EditorHeader />
-    </el-header>
-    <el-container>
-      <el-aside :width="leftPanalCollapse ? '20px' : '300px'" class="panal-transition">
+    </a-layout-header>
+    <a-layout>
+      <a-layout-sider :width="leftPanalCollapse ? '20px' : '300px'" class="panal-transition">
         <EditorMaterial
           :left-panal-collapse="leftPanalCollapse"
           @change-left-panal-collapse="changeLeftPanalCollapse"
         />
-      </el-aside>
-      <el-main>
+      </a-layout-sider>
+      <a-layout-content>
         <EditorStage />
-      </el-main>
-      <el-aside :width="rightPanalCollapse ? '20px' : '300px'" class="panal-transition">
+      </a-layout-content>
+      <a-layout-sider :width="rightPanalCollapse ? '20px' : '300px'" class="panal-transition">
         <EditorAttribute
           :right-panal-collapse="rightPanalCollapse"
           @change-right-panal-collapse="changeRightPanalCollapse"
         />
-      </el-aside>
-    </el-container>
-  </el-container>
+      </a-layout-sider>
+    </a-layout>
+  </a-layout>
 </template>
 
 <style scoped lang="less">
-.el-header {
+.ant-layout-header {
   padding: 0;
   z-index: 1;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 12%), 0 0 6px 0 rgb(0 0 0 / 4%);
+  background-color: white;
+  height: 40px;
 }
-.el-aside {
+.ant-layout-sider {
   box-shadow: 0 0 6px 0 rgb(0 0 0 / 4%), 0 2px 4px 0 rgb(0 0 0 / 12%);
   z-index: 1;
+  background-color: white;
 }
 .panal-transition {
-  transition: width 0.25s linear;
+  transition: all 0.25s linear;
 }
-.el-main {
+.ant-layout-content {
   padding: 0;
 }
 </style>

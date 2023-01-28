@@ -1,26 +1,32 @@
 <template>
   <div class="editor-toolbar">
-    <el-divider direction="vertical" />
-    <el-tooltip content="编辑模式" placement="bottom">
-      <el-button size="small" :icon="EditPen" circle :class="{ 'is-active': isEdit }" @click="changeIsEdit(!isEdit)" />
-    </el-tooltip>
-    <el-tooltip content="地址栏" placement="bottom">
-      <el-button
+    <a-divider type="vertical" />
+    <a-popover content="编辑模式" placement="bottom">
+      <a-button size="small" shape="circle" :class="{ 'is-active': isEdit }" @click="changeIsEdit(!isEdit)">
+        <template #icon>
+          <edit-filled />
+        </template>
+      </a-button>
+    </a-popover>
+    <a-popover content="地址栏" placement="bottom">
+      <a-button
         size="small"
-        :icon="Link"
-        circle
+        shape="circle"
         :class="{ 'is-active': showAddress }"
         @click="changeShowAddress(!showAddress)"
-      />
-    </el-tooltip>
-    <el-divider direction="vertical" />
-    <el-link type="primary">在新窗口打开</el-link>
+      >
+        <template #icon>
+          <link-outlined />
+        </template>
+      </a-button>
+    </a-popover>
+    <a-divider type="vertical" />
+    <a-button type="link">在新窗口打开</a-button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Link, EditPen } from '@element-plus/icons-vue'
-
+import { EditFilled, LinkOutlined } from '@ant-design/icons-vue'
 import { useInject } from '@/hooks/useProvider'
 
 const [isEdit, changeIsEdit] = useInject<boolean>('isEdit')
@@ -33,7 +39,7 @@ const [showAddress, changeShowAddress] = useInject<boolean>('showAddress')
   display: flex;
   align-items: center;
   margin: 0 10px 0 0;
-  .el-button {
+  .ant-btn {
     margin: 0 10px;
   }
 }
