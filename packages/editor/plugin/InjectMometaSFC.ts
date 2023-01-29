@@ -2,15 +2,21 @@ import { parse, compileScript } from '@vue/compiler-sfc'
 import type { SFCDescriptor } from '@vue/compiler-sfc'
 
 const toString = (obj: any) => {
-  if (typeof obj !== 'object') return obj
+  if (typeof obj !== 'object') {
+    if (typeof obj === 'string') {
+      return `'${obj}'`
+    }
+    return obj
+  }
   const keys = Object.keys(obj)
-  let res = '{'
+  let res = `{`
   res += keys
+    .filter((key) => obj[key] !== undefined && obj[key] !== null)
     .map((key) => {
       return ` ${key}: ${toString(obj[key])}`
     })
     .join(',')
-  res += '}'
+  res += `}`
 
   return res
 }
@@ -38,12 +44,16 @@ const getCustomComponent = (descriptor: SFCDescriptor, customCom: Set<string>) =
   }
 }
 
-const transformContent = (source: string, ast: any, customCom: Set<string>) => {
+const transformContent = (source: string, ast: any, customCom: Set<string>, filename: string) => {
   const content = source.split('\n')
-  const DFS = (node: any) => {
+  const DFS = (node: any, slotName?: string) => {
     if (node.type === 1) {
+      if (node.tagType === 3) {
+        slotName = node.props.find((prop: any) => prop.name === 'slot').arg.content
+      }
+
       for (let i = node.children.length - 1; i >= 0; i--) {
-        DFS(node.children[i])
+        DFS(node.children[i], slotName)
       }
 
       if (existComp(node.tag, customCom) || node.tagType === 2 || node.tagType === 3) return
@@ -52,7 +62,10 @@ const transformContent = (source: string, ast: any, customCom: Set<string>) => {
       const mometa = {
         start: node.loc.start,
         end: node.loc.end,
-        isSelfClosing: node.isSelfClosing
+        isSelfClosing: node.isSelfClosing,
+        filename,
+        isComponent: node.tag.startsWith('a-'),
+        slotName
       }
 
       const begain = start.column + node.tag.length
@@ -68,13 +81,13 @@ const transformContent = (source: string, ast: any, customCom: Set<string>) => {
   return content.join('\n')
 }
 
-const InjectMometaSFC = (source: string): string => {
+const InjectMometaSFC = (source: string, filename = 'app'): string => {
   const descriptor = parse(source).descriptor
   const ast = descriptor.template?.ast!
   const customCom = new Set<string>()
   getCustomComponent(descriptor, customCom)
 
-  return transformContent(source, ast, customCom)
+  return transformContent(source, ast, customCom, filename)
 }
 
 export default InjectMometaSFC

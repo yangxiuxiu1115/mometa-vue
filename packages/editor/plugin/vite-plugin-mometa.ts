@@ -32,7 +32,7 @@ const Mometa = function (customOptions: object): PluginOption {
       if (!isVue && !isSFC) return
       if (isSFC) {
         return {
-          code: InjectMometaSFC(src)
+          code: InjectMometaSFC(src, id)
         }
       }
       return InjectMometaElement(src)
