@@ -1,5 +1,5 @@
 {
-  "name": "@lowcode/fs-handle",
+  "name": "@mometa-vue/fs-handle",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -11,6 +11,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/body-parser": "^1.19.2",
     "@types/node": "^18.11.18"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.1"
   }
 }

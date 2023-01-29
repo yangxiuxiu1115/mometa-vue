@@ -2,12 +2,12 @@ import type { Connect } from 'vite'
 import { Preload } from '../types'
 import { NODEOPTION } from '../const'
 
-const moveNode: Connect.NextHandleFunction = (req: any, res, next) => {
+const replaceNode: Connect.NextHandleFunction = (req: any, res, next) => {
   const params = req.body as Preload
-  if (params.type === NODEOPTION.MOVE) {
+  if (params.type === NODEOPTION.REPLACE) {
     console.log(params)
   }
   next()
 }
 
-export default moveNode
+export default replaceNode
