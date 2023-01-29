@@ -230,3 +230,59 @@ import HelloWorld from './components/HelloWorld.vue'
   filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>`
+
+export const slotcomponent = `<script setup lang="ts">
+import HelloWorld from './components/HelloWorld.vue'
+</script>
+
+<template>
+  <HelloWorld msg="Vite + Vue">
+    <template #icon>
+      asd
+    </template>
+    <div>123</div>
+    <slot name="helloworld"></slot>
+  </ HelloWorld>
+</template>
+
+<style scoped>
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
+</style>`
+
+export const slotcomponentTest = `<script setup lang="ts">
+import HelloWorld from './components/HelloWorld.vue'
+</script>
+
+<template>
+  <HelloWorld msg="Vite + Vue">
+    <template #icon>
+      asd
+    </template>
+    <div :mometa="{ start: { column: 5, line: 10, offset: 183}, end: { column: 19, line: 10, offset: 197}, isSelfClosing: false}">123</div>
+    <slot name="helloworld"></slot>
+  </ HelloWorld>
+</template>
+
+<style scoped>
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
+</style>`

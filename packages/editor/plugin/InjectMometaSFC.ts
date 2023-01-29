@@ -41,10 +41,12 @@ const getCustomComponent = (descriptor: SFCDescriptor, customCom: Set<string>) =
 const transformContent = (source: string, ast: any, customCom: Set<string>) => {
   const content = source.split('\n')
   const DFS = (node: any) => {
-    if (node.type === 1 && !existComp(node.tag, customCom)) {
+    if (node.type === 1) {
       for (let i = node.children.length - 1; i >= 0; i--) {
         DFS(node.children[i])
       }
+
+      if (existComp(node.tag, customCom) || node.tagType === 2 || node.tagType === 3) return
 
       const start = node.loc.start
       const mometa = {

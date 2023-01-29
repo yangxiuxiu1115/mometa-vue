@@ -1,6 +1,17 @@
 import { describe, expect, it } from 'vitest'
 import injectMometaSFC from '../InjectMometaSFC'
-import { common, commonTest, component, componentTest, VFor, VForTest, uicomponent, uicomponentTest } from './case'
+import {
+  common,
+  commonTest,
+  component,
+  componentTest,
+  VFor,
+  VForTest,
+  uicomponent,
+  uicomponentTest,
+  slotcomponent,
+  slotcomponentTest
+} from './case'
 
 describe('test injectMometaSFC', () => {
   it('common element', () => {
@@ -21,5 +32,10 @@ describe('test injectMometaSFC', () => {
   it('ui element', () => {
     const uicomponentSFC = injectMometaSFC(uicomponent)
     expect(uicomponentSFC).toBe(uicomponentTest)
+  })
+
+  it('slot element', () => {
+    const slotcomponentSFC = injectMometaSFC(slotcomponent)
+    expect(slotcomponentSFC).toBe(slotcomponentTest)
   })
 })
