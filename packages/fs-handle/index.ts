@@ -8,7 +8,12 @@ const nodeOptMiddleware: Connect.NextHandleFunction = (req, res, next) => {
       if (i >= index) console.warn('请勿重复调用next')
       i = index
       const fn = middlewares[index]
-      fn && fn(req, res, () => dispatch(++index))
+      if (!fn) Promise.resolve()
+      try {
+        return Promise.resolve(fn(req, res, dispatch.bind(null, index + 1)))
+      } catch (err) {
+        return Promise.reject(err)
+      }
     }
     dispatch(0)
   } else {

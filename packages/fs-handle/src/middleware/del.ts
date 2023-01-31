@@ -2,7 +2,7 @@ import type { Connect } from 'vite'
 import { NODEOPTION } from '../const'
 import { Preload } from '../types'
 
-const delNode: Connect.NextHandleFunction = (req: any, res, next) => {
+const delMiddleware: Connect.NextHandleFunction = (req: any, res, next) => {
   const params = req.body as Preload
   if (params.type === NODEOPTION.DELETE) {
     console.log(params)
@@ -10,4 +10,4 @@ const delNode: Connect.NextHandleFunction = (req: any, res, next) => {
   next()
 }
 
-export default delNode
+export default delMiddleware

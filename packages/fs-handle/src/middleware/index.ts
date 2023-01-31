@@ -1,7 +1,7 @@
 import bodyparser from 'body-parser'
-import delNode from './del'
-import moveNode from './move'
-import replaceNode from './replace'
-import insertNode from './insert'
+import delMiddleware from './del'
+import moveMiddleware from './move'
+import replaceMiddleware from './replace'
+import insertMiddleware from './insert'
 
-export const middlewares = [bodyparser.json(), delNode, moveNode, replaceNode, insertNode]
+export const middlewares = [bodyparser.json(), delMiddleware, moveMiddleware, replaceMiddleware, insertMiddleware]

@@ -1,6 +1,6 @@
 import { NODEOPTION } from './const'
 
-interface Loc {
+export interface Loc {
   column: number
   line: number
   offset: number
