@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import LineContent from '../src/common/lineContent'
-import { content, delContent, insertContent, replaceContent } from './case'
+import { content, delContent, insertContent, replaceContent, delContent2 } from './case'
 
 describe('test lineContent', () => {
   it('del node', () => {
@@ -17,8 +17,24 @@ describe('test lineContent', () => {
         offset: 0
       }
     )
-    console.log(lineContent.toString())
     expect(lineContent.toString()).toBe(delContent)
+  })
+
+  it('del node2', () => {
+    const lineContent = new LineContent(content)
+    lineContent.del(
+      {
+        line: 9,
+        column: 6,
+        offset: 0
+      },
+      {
+        line: 9,
+        column: 22,
+        offset: 0
+      }
+    )
+    expect(lineContent.toString()).toBe(delContent2)
   })
 
   it('insert node', () => {
@@ -28,8 +44,8 @@ describe('test lineContent', () => {
       test insert
     </div>`,
       {
-        line: 5,
-        column: 4,
+        line: 9,
+        column: 22,
         offset: 0
       }
     )
