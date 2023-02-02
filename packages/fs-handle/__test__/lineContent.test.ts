@@ -8,7 +8,7 @@ describe('test lineContent', () => {
     lineContent.del(
       {
         line: 7,
-        column: 4,
+        column: 5,
         offset: 0
       },
       {
@@ -25,7 +25,7 @@ describe('test lineContent', () => {
     lineContent.del(
       {
         line: 9,
-        column: 6,
+        column: 7,
         offset: 0
       },
       {
@@ -60,7 +60,7 @@ describe('test lineContent', () => {
     </div>`,
       {
         line: 9,
-        column: 22,
+        column: 23,
         offset: 0
       },
       {

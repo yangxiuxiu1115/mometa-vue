@@ -13,7 +13,7 @@ export default class LineContent {
     const { line: endLine, column: endColumn } = end
 
     if (startLine === endLine) {
-      return this.content[startLine - 1].slice(startColumn, endColumn)
+      return this.content[startLine - 1].slice(startColumn - 1, endColumn)
     }
 
     const code = []
@@ -32,8 +32,8 @@ export default class LineContent {
     return code.join('\n')
   }
 
-  insert(code: string, start: Loc) {
-    const { line, column } = start
+  insert(code: string, end: Loc) {
+    const { line, column } = end
     const endContent = this.content[line - 1].slice(column)
     this.content[line - 1] = this.content[line - 1].slice(0, column)
     if (endContent.trim()) this.content.splice(line, 0, endContent)
@@ -48,9 +48,9 @@ export default class LineContent {
 
     if (line === endLine) {
       this.content[endLine - 1] =
-        this.content[endLine - 1].slice(0, column) + this.content[endLine - 1].slice(endColumn)
+        this.content[endLine - 1].slice(0, column - 1) + this.content[endLine - 1].slice(endColumn)
     } else {
-      this.content[line - 1] = this.content[line - 1].slice(0, column)
+      this.content[line - 1] = this.content[line - 1].slice(0, column - 1)
       this.content[endLine - 1] = this.content[endLine - 1].slice(endColumn)
       this.content.splice(line, endLine - line - 1)
     }
