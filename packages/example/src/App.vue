@@ -3,28 +3,22 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-      <span>asd</span><span>asd</span>
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <hello-world msg="Vite + Vue" />
+  <a-layout class="layout" :style="{ height: '100%' }">
+    <a-layout-header>
+      <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
+        <a-menu-item key="1">
+          <router-link to="/page">page</router-link>
+        </a-menu-item>
+        <a-menu-item key="2">
+          <router-link to="/home">home</router-link>
+        </a-menu-item>
+      </a-menu>
+    </a-layout-header>
+    <a-layout-content>
+      <router-view></router-view>
+    </a-layout-content>
+    <a-layout-footer style="text-align: center"> Ant Design ©2018 Created by Ant UED </a-layout-footer>
+  </a-layout>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped></style>

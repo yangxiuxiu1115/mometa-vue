@@ -49,7 +49,7 @@ const transformContent = (source: string, ast: any, customCom: Set<string>, file
   const DFS = (node: any, slotName?: string) => {
     if (node.type === 1) {
       if (node.tagType === 3) {
-        slotName = node.props.find((prop: any) => prop.name === 'slot').arg.content
+        slotName = node.props.find((prop: any) => prop.name === 'slot')?.arg.content
       }
 
       for (let i = node.children.length - 1; i >= 0; i--) {
