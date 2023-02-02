@@ -1,12 +1,12 @@
 import { createFilter, PluginOption } from 'vite'
 
-import InjectMometaElement from './InjectMometaElement'
+import { InjectMometaElementV2 } from './InjectMometaElement'
 import InjectMometaSFC from './InjectMometaSFC'
 import middlewares from './middleware/'
 
 const Mometa = function (customOptions: object): PluginOption {
-  const vueOptions = {
-    include: [/vue\.js\?v=[a-zA-Z0-9]{8}$/],
+  const jsOptions = {
+    include: [/\.js\?v=[a-zA-Z0-9]{8}$/],
     exclude: []
   }
 
@@ -15,8 +15,8 @@ const Mometa = function (customOptions: object): PluginOption {
     exclude: []
   }
 
-  const filterVue = createFilter(vueOptions.include, vueOptions.exclude)
   const filterSFC = createFilter(SFCOption.include, SFCOption.exclude)
+  const filterJS = createFilter(jsOptions.include, jsOptions.exclude)
 
   return {
     name: 'vite-plugin-mometa',
@@ -27,15 +27,15 @@ const Mometa = function (customOptions: object): PluginOption {
       }
     },
     transform(src: string, id: string) {
-      const isVue = filterVue(id)
       const isSFC = filterSFC(id)
-      if (!isVue && !isSFC) return
+      const isJS = filterJS(id)
+      if (!isSFC && !isJS) return
       if (isSFC) {
         return {
           code: InjectMometaSFC(src, id)
         }
       }
-      return InjectMometaElement(src)
+      return InjectMometaElementV2(src)
     }
   }
 }
