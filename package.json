@@ -8,6 +8,8 @@
   "scripts": {
     "example": "pnpm -F @mometa-vue/example run dev",
     "editor": "pnpm -F @mometa-vue/editor run dev",
+    "build-plugin": "pnpm -F @mometa-vue/editor run build-plugin",
+    "build": "pnpm -F @mometa-vue/editor run build",
     "prepare": "husky install",
     "lint": "eslint",
     "lint:fix": "eslint --fix packages",

@@ -13,14 +13,14 @@ const resolve = (str: string) => {
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
   return {
-    base: command === 'build' ? '/__mometa' : '',
+    base: command === 'build' ? '/__mometa/editor' : '',
     resolve: {
       alias: {
         '@': resolve('./src')
       }
     },
     build: {
-      outDir: '__mometa'
+      outDir: '__mometa/editor'
     },
     plugins: [
       vue(),

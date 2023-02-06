@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import injectMometaSFC from '../InjectMometaSFC'
+import injectMometaSFC from '../runtime/InjectMometaSFC'
 import {
   common,
   commonTest,

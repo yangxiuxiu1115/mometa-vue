@@ -18,7 +18,7 @@ const fileTypes: {
 
 const FileTypeMiddleware: Connect.NextHandleFunction = (req, res, next) => {
   if (req.url?.startsWith(`/${MOMETAURL}`)) {
-    const assets = resolve(`..${req.url}`)
+    const assets = resolve(`../..${req.url}`)
     for (const fileType in fileTypes) {
       const reg = new RegExp(fileType)
       if (reg.test(assets)) {

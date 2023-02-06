@@ -2,9 +2,9 @@
   "name": "@mometa-vue/editor",
   "version": "1.0.0",
   "description": "",
-  "main": "./vite-plugin/index.js",
-  "module": "./vite-plugin/index.mjs",
-  "types": "./vite-plugin/index.d.ts",
+  "main": "./__mometa/plugin/index.js",
+  "module": "./__mometa/plugin/index.mjs",
+  "types": "./__mometa/plugin/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "esno ./scripts/build.ts",
@@ -18,9 +18,9 @@
   "keywords": [],
   "exports": {
     ".": {
-      "import": "./vite-plugin/index.mjs",
-      "require": "./vite-plugin/index.js",
-      "types": "./vite-plugin/index.d.ts"
+      "import": "./__mometa/plugin/index.mjs",
+      "require": "./__mometa/plugin/index.js",
+      "types": "./__mometa/plugin/index.d.ts"
     }
   },
   "author": "yangxiuxiu",
@@ -33,6 +33,7 @@
     "@babel/types": "^7.20.7",
     "@vue/compiler-sfc": "^3.2.45",
     "ant-design-vue": "^3.2.15",
+    "cheerio": "1.0.0-rc.12",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {

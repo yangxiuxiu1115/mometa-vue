@@ -10,7 +10,7 @@ const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths)
 
 const MometaMiddleware: Connect.NextHandleFunction = (req, res, next) => {
   if (req.url === `/${MOMETAURL}`) {
-    const mometa = readFileSync(resolve(`../${MOMETAURL}/index.html`))
+    const mometa = readFileSync(resolve(`../../${MOMETAURL}/editor/index.html`))
     res.end(mometa)
     return
   }

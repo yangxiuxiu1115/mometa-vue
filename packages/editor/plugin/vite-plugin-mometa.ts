@@ -1,7 +1,6 @@
 import { createFilter, PluginOption } from 'vite'
 
-import { InjectMometaElementV2 } from './InjectMometaElement'
-import InjectMometaSFC from './InjectMometaSFC'
+import { InjectMometaElementV2, InjectMometaSFC, InjectRuntime } from './runtime'
 import middlewares from './middleware/'
 
 const Mometa = function (customOptions: object): PluginOption {
@@ -37,8 +36,11 @@ const Mometa = function (customOptions: object): PluginOption {
       }
       return InjectMometaElementV2(src)
     },
-    transformIndexHtml(html, ctx) {
-      console.log(html)
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html) {
+        InjectRuntime(html)
+      }
     }
   }
 }
