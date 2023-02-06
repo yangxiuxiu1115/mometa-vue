@@ -14,21 +14,6 @@ const MometaMiddleware: Connect.NextHandleFunction = (req, res, next) => {
     res.end(mometa)
     return
   }
-  if (req.url?.startsWith(`/${MOMETAURL}`)) {
-    const assets = resolve(`..${req.url}`)
-    const file = readFileSync(assets)
-    if (/\.svg$/.test(assets)) {
-      res.setHeader('Content-Type', 'image/svg+xml')
-    }
-    if (/\.js$/.test(assets)) {
-      res.setHeader('Content-Type', 'application/javascript')
-    }
-    if (/\.css$/.test(assets)) {
-      res.setHeader('Content-Type', 'text/css')
-    }
-    res.end(file)
-    return
-  }
   next()
 }
 

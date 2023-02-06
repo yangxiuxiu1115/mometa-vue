@@ -1,5 +1,6 @@
 import MometaMiddleware from './MometaMiddleware'
+import FileTypeMiddleware from './FileTypeMiddleware'
 
-const middlewares = [MometaMiddleware]
+const middlewares = [MometaMiddleware, FileTypeMiddleware]
 
 export default middlewares

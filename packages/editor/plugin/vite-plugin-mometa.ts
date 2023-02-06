@@ -36,6 +36,9 @@ const Mometa = function (customOptions: object): PluginOption {
         }
       }
       return InjectMometaElementV2(src)
+    },
+    transformIndexHtml(html, ctx) {
+      console.log(html)
     }
   }
 }
