@@ -1,7 +1,13 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { createFilter, PluginOption } from 'vite'
 
 import { InjectMometaElementV2, InjectMometaSFC, InjectRuntime } from './runtime'
-import middlewares from './middleware/'
+import middlewares from './middleware'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths)
 
 const Mometa = function (customOptions: object): PluginOption {
   const jsOptions = {
@@ -23,6 +29,11 @@ const Mometa = function (customOptions: object): PluginOption {
     configureServer(server) {
       for (const middleware of middlewares) {
         server.middlewares.use(middleware)
+      }
+    },
+    resolveId(source) {
+      if (source.startsWith('/__mometa')) {
+        return resolve(`../..${source}`)
       }
     },
     transform(src: string, id: string) {

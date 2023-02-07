@@ -23,8 +23,9 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "plugin/*.ts",
+    "plugin/**/*.ts",
     "scripts/*.ts",
-    "plugin/**/*.ts"
+    "runtime/*.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
