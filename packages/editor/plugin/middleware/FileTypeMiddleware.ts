@@ -1,12 +1,6 @@
 import { readFileSync } from 'node:fs'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { MOMETAURL, resolve } from './const'
 import type { Connect } from 'vite'
-
-const MOMETAURL = '__mometa'
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths)
 
 const fileTypes: {
   [key: string]: string
@@ -17,7 +11,7 @@ const fileTypes: {
 }
 
 const FileTypeMiddleware: Connect.NextHandleFunction = (req, res, next) => {
-  if (req.url?.startsWith(`/${MOMETAURL}`)) {
+  if (req.url?.startsWith(`${MOMETAURL}`)) {
     const assets = resolve(`../..${req.url}`)
     for (const fileType in fileTypes) {
       const reg = new RegExp(fileType)

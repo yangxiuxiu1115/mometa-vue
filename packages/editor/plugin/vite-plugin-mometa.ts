@@ -39,7 +39,7 @@ const Mometa = function (customOptions: object): PluginOption {
     transformIndexHtml: {
       order: 'pre',
       handler(html) {
-        InjectRuntime(html)
+        return InjectRuntime(html)
       }
     }
   }
