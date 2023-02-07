@@ -8,6 +8,7 @@
   "scripts": {
     "example": "pnpm -F @mometa-vue/example run dev",
     "editor": "pnpm -F @mometa-vue/editor run dev",
+    "dev-plugin": "esno ./scripts/dev-plugin.ts",
     "build-plugin": "pnpm -F @mometa-vue/editor run build-plugin",
     "build": "pnpm -F @mometa-vue/editor run build",
     "prepare": "husky install",
@@ -28,9 +29,9 @@
   "author": "yangxiuxiu",
   "license": "ISC",
   "dependencies": {
+    "prettier": "^2.8.1",
     "typescript": "^4.9.4",
-    "vue": "^3.2.45",
-    "prettier": "^2.8.1"
+    "vue": "^3.2.45"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
@@ -38,14 +39,18 @@
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
     "@vitejs/plugin-vue": "^4.0.0",
+    "chokidar": "^3.5.3",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.9.0",
     "esno": "^0.16.3",
+    "execa": "^6.1.0",
     "husky": "^8.0.3",
     "jsdom": "^21.0.0",
     "lint-staged": "^13.1.0",
+    "perfect-debounce": "^0.1.3",
+    "picocolors": "^1.0.0",
     "tsup": "^6.5.0",
     "vite": "^4.0.0",
     "vitest": "^0.27.3",

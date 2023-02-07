@@ -9,6 +9,11 @@ import Mometa from '@mometa-vue/editor'
 // https://vitejs.dev/config/
 export default defineConfig(({}) => {
   return {
+    server: {
+      watch: {
+        ignored: ['!**/node_modules/@mometa-vue/editor/**']
+      }
+    },
     plugins: [
       Mometa({}),
       vue(),
@@ -19,6 +24,9 @@ export default defineConfig(({}) => {
       Components({
         resolvers: [AntDesignVueResolver()]
       })
-    ]
+    ],
+    optimizeDeps: {
+      exclude: ['@mometa-vue/editor']
+    }
   }
 })

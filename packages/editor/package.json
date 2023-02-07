@@ -2,7 +2,7 @@
   "name": "@mometa-vue/editor",
   "version": "1.0.0",
   "description": "",
-  "main": "./__mometa/plugin/index.js",
+  "main": "./__mometa/plugin/index.mjs",
   "module": "./__mometa/plugin/index.mjs",
   "types": "./__mometa/plugin/index.d.ts",
   "scripts": {
