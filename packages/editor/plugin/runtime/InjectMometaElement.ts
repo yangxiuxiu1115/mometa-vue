@@ -1,9 +1,12 @@
+import path from 'path'
 import { parse } from '@babel/parser'
 import types from '@babel/types'
 import traverse from '@babel/traverse'
 import generate from '@babel/generator'
 import type { Identifier, ArrowFunctionExpression, BlockStatement, VariableDeclarator } from '@babel/types'
 import type { NodePath } from '@babel/traverse'
+import { parse as EsModuleParse } from 'es-module-lexer'
+import { originPatchProp, targetPatchProp } from './const'
 
 const InjectMometaElement = (source: string) => {
   const ast = parse(source, { sourceType: 'module' })
@@ -82,5 +85,32 @@ const InjectMometaElementV2 = (source: string) => {
 };`
   )
 }
+
+let deps: string[] | true = []
+
+const removeQuery = (url: string) => {
+  const timestampRE = /\bv=[a-zA-z0-9]{8}&?\b/g
+  const trailingSeparatorRE = /[?&]$/
+  return url.replaceAll(timestampRE, '').replace(trailingSeparatorRE, '')
+}
+
+const InjectMometaElementV3 = (source: string, id: string, isVue: boolean) => {
+  if (deps === true) return
+  const isHas = deps.includes(removeQuery(path.basename(id)))
+  if (isVue || isHas) {
+    if (source.includes(originPatchProp)) {
+      deps = true
+      return source.replace(originPatchProp, targetPatchProp)
+    } else {
+      deps = deps.filter((v) => v !== path.basename(id!))
+      const [imports] = EsModuleParse(source)
+
+      for (const im of imports) {
+        const name = im.n
+        deps.push(removeQuery(path.basename(name!)))
+      }
+    }
+  }
+}
 export default InjectMometaElement
-export { InjectMometaElementV2 }
+export { InjectMometaElementV2, InjectMometaElementV3 }

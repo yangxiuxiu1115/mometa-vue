@@ -2,7 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createFilter, PluginOption } from 'vite'
 
-import { InjectMometaElementV2, InjectMometaSFC, InjectRuntime } from './runtime'
+import { InjectMometaElementV3, InjectMometaSFC, InjectRuntime } from './runtime'
 import middlewares from './middleware'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -11,7 +11,7 @@ const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths)
 
 const Mometa = function (customOptions: object): PluginOption {
   const jsOptions = {
-    include: [/\.js\?v=[a-zA-Z0-9]{8}$/],
+    include: [/vue\.js\?v=[a-zA-Z0-9]{8}$/],
     exclude: []
   }
 
@@ -39,13 +39,12 @@ const Mometa = function (customOptions: object): PluginOption {
     transform(src: string, id: string) {
       const isSFC = filterSFC(id)
       const isJS = filterJS(id)
-      if (!isSFC && !isJS) return
       if (isSFC) {
         return {
           code: InjectMometaSFC(src, id)
         }
       }
-      return InjectMometaElementV2(src)
+      return InjectMometaElementV3(src, id, isJS)
     },
     transformIndexHtml: {
       order: 'pre',
