@@ -1,0 +1,3 @@
+const MOMETA_BASE_URL = '/${MOMETA_BASE_URL}'
+
+export { MOMETA_BASE_URL }
