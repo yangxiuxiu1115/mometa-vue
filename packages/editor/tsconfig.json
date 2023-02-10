@@ -25,7 +25,8 @@
     "plugin/*.ts",
     "plugin/**/*.ts",
     "scripts/*.ts",
-    "runtime/*.ts"
+    "runtime/*.ts",
+    "shared/*.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
