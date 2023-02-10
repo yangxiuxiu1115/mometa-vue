@@ -31,11 +31,11 @@ const Mometa = function (customOptions: object): PluginOption {
         server.middlewares.use(middleware)
       }
     },
-    resolveId(source) {
-      if (source.startsWith('/__mometa')) {
-        return resolve(`../..${source}`)
-      }
-    },
+    // resolveId(source) {
+    //   if (source.startsWith('/__mometa')) {
+    //     return resolve(`../..${source}`)
+    //   }
+    // },
     transform(src: string, id: string) {
       const isSFC = filterSFC(id)
       const isJS = filterJS(id)

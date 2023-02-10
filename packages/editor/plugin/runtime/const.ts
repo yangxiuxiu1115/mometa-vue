@@ -1,3 +1,6 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
 export const originPatchProp = `var patchProp = (el, key, prevValue, nextValue, isSVG = false, prevChildren, parentComponent, parentSuspense, unmountChildren) => {
   if (key === "class") {
     patchClass(el, nextValue, isSVG);
@@ -43,3 +46,8 @@ export const targetPatchProp = `var patchProp = (el, key, prevValue, nextValue, 
     patchAttr(el, key, nextValue, isSVG);
   }
 };`
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+export const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths)
