@@ -5,8 +5,9 @@ import { logger, run } from './utils'
 
 const rebuildPlugin = async () => {
   const plugin = path.resolve(process.cwd(), 'packages/editor/plugin')
+  const runtime = path.resolve(process.cwd(), 'packages/editor/runtime')
 
-  const watcher = chokidar.watch(plugin, {
+  const watcher = chokidar.watch([plugin, runtime], {
     persistent: true
   })
 

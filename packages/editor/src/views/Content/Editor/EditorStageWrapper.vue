@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
 const url = import.meta.env.DEV ? 'http://127.0.0.1:5174/' : '/'
 </script>
 

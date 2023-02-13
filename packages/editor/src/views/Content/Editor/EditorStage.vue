@@ -1,6 +1,6 @@
 <template>
   <div class="editor-stage">
-    <div v-show="showAddress" class="location-widget"></div>
+    <EditorStageWidget />
     <div style="flex: 1 1; padding: 20px; background-color: rgb(226, 229, 236)">
       <EditorStageWrapper />
     </div>
@@ -8,11 +8,8 @@
 </template>
 
 <script setup lang="ts">
+import EditorStageWidget from './EditorStageWidget.vue'
 import EditorStageWrapper from './EditorStageWrapper.vue'
-
-import { useInject } from '@/hooks/useProvider'
-
-const [showAddress] = useInject<boolean>('showAddress')
 </script>
 
 <style scoped lang="less">
@@ -21,8 +18,5 @@ const [showAddress] = useInject<boolean>('showAddress')
   height: 100%;
   display: flex;
   flex-direction: column;
-  .location-widget {
-    height: 45px;
-  }
 }
 </style>
