@@ -1,10 +1,32 @@
 <template>
-  <div v-show="showAddress" class="editor-stage_widget"></div>
+  <div v-show="showAddress" class="editor-stage-widget">
+    <a-space :size="10">
+      <a-button type="text" :disabled="canBack" @click="goBack">
+        <template #icon><arrow-left-outlined /></template>
+      </a-button>
+      <a-button type="text" :disabled="canNext" @click="goNext">
+        <template #icon><arrow-right-outlined /></template>
+      </a-button>
+      <a-button type="text" @click="reload">
+        <template #icon><sync-outlined /></template>
+      </a-button>
+      <a-input class="editor-stage-widget__input" :value="inputValue" @change="onChange"></a-input
+    ></a-space>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, reactive, ref, watch } from 'vue'
+import { onMounted, onUnmounted, reactive, watch, computed } from 'vue'
+import { ArrowLeftOutlined, ArrowRightOutlined, SyncOutlined } from '@ant-design/icons-vue'
+
 import { useInject } from '@/hooks/useProvider'
+import useState from '@/hooks/useState'
+
+const emit = defineEmits(['urlChange'])
+
+const url = () => {
+  return historyStack.urls[historyStack.index]
+}
 
 const [showAddress] = useInject<boolean>('showAddress')
 const historyStack = reactive<{
@@ -14,23 +36,34 @@ const historyStack = reactive<{
   urls: ['/'],
   index: 0
 })
-const action = ref<{
-  type: 'history' | 'hash'
-  url: string
-  action: 'push' | 'replace'
-  data: any
-}>()
-watch(action, (val) => {
-  if (val) {
-    if (val.action === 'replace') {
-      historyStack.urls[historyStack.index] = val.url
-    } else {
-      historyStack.urls.push(val.url)
-      historyStack.index = historyStack.index + 1
-    }
-  }
-  console.log(historyStack)
+const canBack = computed(() => {
+  return historyStack.index === 0
 })
+const goBack = () => {
+  historyStack.index--
+  emit('urlChange', url())
+}
+const canNext = computed(() => {
+  return historyStack.index === historyStack.urls.length - 1
+})
+const goNext = () => {
+  historyStack.index++
+  emit('urlChange', url())
+}
+const reload = () => {
+  console.log('reload')
+}
+
+const [inputValue, setInputValue] = useState(url())
+const onChange = (e: any) => {
+  setInputValue(e.target.value)
+}
+watch(
+  () => url(),
+  (val) => {
+    setInputValue(val)
+  }
+)
 
 const messageHandle = (ev: MessageEvent) => {
   if (import.meta.env.DEV && ev.origin !== 'http://127.0.0.1:5174') {
@@ -38,7 +71,13 @@ const messageHandle = (ev: MessageEvent) => {
   } else if (!import.meta.env.DEV && ev.origin !== window.origin) {
     return
   } else {
-    action.value = ev.data
+    const val = ev.data
+    if (val.action === 'replace') {
+      historyStack.urls[historyStack.index] = val.url
+    } else {
+      historyStack.urls.push(val.url)
+      historyStack.index = historyStack.index + 1
+    }
   }
 }
 
@@ -52,8 +91,22 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="less">
-.editor-stage_widget {
+.editor-stage-widget {
   height: 45px;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+  .ant-space {
+    width: 100%;
+    &:deep(.ant-space-item:last-child) {
+      flex: 1;
+      .editor-stage-widget__input {
+        width: 100%;
+        border-radius: 15px;
+      }
+    }
+  }
 }
 </style>
