@@ -30,4 +30,11 @@ history.replaceState = function (data: any, unused: string, url?: string | URL |
   return __replaceState.apply(this, [data, unused, url])
 }
 
+window.addEventListener('message', (ev) => {
+  const data = ev.data
+  if (data === 'reload') {
+    window.location.reload()
+  }
+})
+
 export {}

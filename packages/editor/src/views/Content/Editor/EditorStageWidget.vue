@@ -10,7 +10,12 @@
       <a-button type="text" @click="reload">
         <template #icon><sync-outlined /></template>
       </a-button>
-      <a-input class="editor-stage-widget__input" :value="inputValue" @change="onChange"></a-input
+      <a-input
+        class="editor-stage-widget__input"
+        :value="inputValue"
+        @change="onChange"
+        @press-enter="onPressEnter"
+      ></a-input
     ></a-space>
   </div>
 </template>
@@ -22,6 +27,9 @@ import { ArrowLeftOutlined, ArrowRightOutlined, SyncOutlined } from '@ant-design
 import { useInject } from '@/hooks/useProvider'
 import useState from '@/hooks/useState'
 
+const props = defineProps<{
+  iframeRef?: HTMLIFrameElement
+}>()
 const emit = defineEmits(['urlChange'])
 
 const url = () => {
@@ -51,12 +59,17 @@ const goNext = () => {
   emit('urlChange', url())
 }
 const reload = () => {
-  console.log('reload')
+  historyStack.urls = [url()]
+  historyStack.index = 0
+  props.iframeRef?.contentWindow?.postMessage('reload', '*')
 }
 
 const [inputValue, setInputValue] = useState(url())
-const onChange = (e: any) => {
-  setInputValue(e.target.value)
+const onChange = (e: KeyboardEvent) => {
+  setInputValue((e.target as HTMLInputElement)?.value)
+}
+const onPressEnter = (e: KeyboardEvent) => {
+  emit('urlChange', (e.target as HTMLInputElement)?.value)
 }
 watch(
   () => url(),

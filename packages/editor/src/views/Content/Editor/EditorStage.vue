@@ -1,8 +1,8 @@
 <template>
   <div class="editor-stage">
-    <EditorStageWidget @url-change="urlChange" />
+    <EditorStageWidget :iframe-ref="iframeRef" @url-change="urlChange" />
     <div style="flex: 1 1; padding: 20px; background-color: rgb(226, 229, 236)">
-      <EditorStageWrapper :iframe-url="iframeUrl" />
+      <EditorStageWrapper :iframe-url="iframeUrl" @iframe-change="iframeChange" />
     </div>
   </div>
 </template>
@@ -13,9 +13,14 @@ import EditorStageWidget from './EditorStageWidget.vue'
 import EditorStageWrapper from './EditorStageWrapper.vue'
 
 const iframeUrl = ref<string>()
+const iframeRef = ref<HTMLIFrameElement>()
 
 const urlChange = (url: string) => {
   iframeUrl.value = url
+}
+
+const iframeChange = (el?: HTMLIFrameElement) => {
+  iframeRef.value = el
 }
 </script>
 
