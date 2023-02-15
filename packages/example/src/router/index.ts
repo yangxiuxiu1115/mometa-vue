@@ -11,7 +11,17 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/page',
-    component: () => import('../views/PageContent.vue')
+    component: () => import('../views/PageContent.vue'),
+    children: [
+      {
+        path: '',
+        redirect: '/page/content'
+      },
+      {
+        path: 'content',
+        component: () => import('../views/ChildrenContent.vue')
+      }
+    ]
   }
 ]
 

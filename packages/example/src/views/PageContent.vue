@@ -6,6 +6,7 @@
     <a href="https://vuejs.org/" target="_blank">
       <img src="../assets/vue.svg" class="logo" alt="Vue logo" />
     </a>
+    <router-view></router-view>
   </div>
 </template>
 
