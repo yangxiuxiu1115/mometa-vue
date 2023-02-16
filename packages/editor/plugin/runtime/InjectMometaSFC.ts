@@ -65,7 +65,8 @@ const transformContent = (source: string, ast: any, customCom: Set<string>, file
         isSelfClosing: node.isSelfClosing,
         filename,
         isComponent: node.tag.startsWith('a-'),
-        slotName
+        slotName,
+        name: node.tag
       }
 
       const begain = start.column + node.tag.length
@@ -84,7 +85,7 @@ const transformContent = (source: string, ast: any, customCom: Set<string>, file
 const InjectMometaSFC = (source: string, filename = 'app'): string => {
   const descriptor = parse(source).descriptor
   const ast = descriptor.template?.ast!
-  const customCom = new Set<string>()
+  const customCom = new Set<string>(['router-link', 'transition', 'keep-alive'])
   getCustomComponent(descriptor, customCom)
 
   return transformContent(source, ast, customCom, filename)
