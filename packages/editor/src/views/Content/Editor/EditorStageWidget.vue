@@ -21,11 +21,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, reactive, watch, computed } from 'vue'
+import { reactive, watch, computed } from 'vue'
 import { ArrowLeftOutlined, ArrowRightOutlined, SyncOutlined } from '@ant-design/icons-vue'
 
-import { useInject } from '@/hooks/useProvider'
-import useState from '@/hooks/useState'
+import { useInject, useState, useEvent } from '@/hooks'
+import type { HashMessage, HistoryMessage, Message } from '@shared/types'
 
 const props = defineProps<{
   iframeRef?: HTMLIFrameElement
@@ -78,29 +78,25 @@ watch(
   }
 )
 
-const messageHandle = (ev: MessageEvent) => {
+const messageHandle = (ev: MessageEvent<Message>) => {
   if (import.meta.env.DEV && ev.origin !== 'http://127.0.0.1:5174') {
     return
   } else if (!import.meta.env.DEV && ev.origin !== window.origin) {
     return
   } else {
-    const val = ev.data
-    if (val.action === 'replace') {
-      historyStack.urls[historyStack.index] = val.url
-    } else {
-      historyStack.urls.push(val.url)
-      historyStack.index = historyStack.index + 1
+    if (['history', 'hash'].includes(ev.data.action)) {
+      const val = ev.data as HistoryMessage | HashMessage
+      if (val.type === 'replace') {
+        historyStack.urls[historyStack.index] = val.url
+      } else {
+        historyStack.urls.push(val.url)
+        historyStack.index = historyStack.index + 1
+      }
     }
   }
 }
 
-onMounted(() => {
-  window.addEventListener('message', messageHandle)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('message', messageHandle)
-})
+useEvent('message', messageHandle)
 </script>
 
 <style scoped lang="less">

@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { EditFilled, LinkOutlined } from '@ant-design/icons-vue'
-import { useInject } from '@/hooks/useProvider'
+import { useInject } from '@/hooks'
 
 const [isEdit, changeIsEdit] = useInject<boolean>('isEdit')
 const [showAddress, changeShowAddress] = useInject<boolean>('showAddress')

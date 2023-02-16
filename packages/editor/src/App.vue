@@ -2,8 +2,7 @@
 import EditorHeader from './views/Header/EditorHeader.vue'
 import { EditorAttribute, EditorMaterial, EditorStage } from './views/Content'
 
-import { useProvider } from '@/hooks/useProvider'
-import useState from '@/hooks/useState'
+import { useProvider, useState } from '@/hooks'
 
 useProvider('isEdit', true)
 useProvider('showAddress', true)
