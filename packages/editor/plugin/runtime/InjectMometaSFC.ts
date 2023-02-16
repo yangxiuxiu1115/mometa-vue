@@ -1,5 +1,6 @@
 import { parse, compileScript } from '@vue/compiler-sfc'
 import type { SFCDescriptor } from '@vue/compiler-sfc'
+import type { Mometa } from 'shared/types'
 
 const toString = (obj: any) => {
   if (typeof obj !== 'object') {
@@ -59,7 +60,7 @@ const transformContent = (source: string, ast: any, customCom: Set<string>, file
       if (existComp(node.tag, customCom) || node.tagType === 2 || node.tagType === 3) return
 
       const start = node.loc.start
-      const mometa = {
+      const mometa: Mometa = {
         start: node.loc.start,
         end: node.loc.end,
         isSelfClosing: node.isSelfClosing,

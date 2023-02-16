@@ -16,7 +16,8 @@ export default defineConfig(({ command }) => {
     base: command === 'build' ? '/${MOMETA_BASE_URL}' : '',
     resolve: {
       alias: {
-        '@': resolve('./src')
+        '@': resolve('./src'),
+        '@shared': resolve('./shared')
       }
     },
     build: {
