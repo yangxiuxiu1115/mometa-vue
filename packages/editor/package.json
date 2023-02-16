@@ -12,7 +12,6 @@
     "build-plugin": "esno ./scripts/build-plugin.ts",
     "typecheck": "tsc --noEmit && vue-tsc --noEmit",
     "preview": "vite preview",
-    "prepare": "pnpm run build",
     "prepublishOnly": "pnpm run build"
   },
   "keywords": [],
