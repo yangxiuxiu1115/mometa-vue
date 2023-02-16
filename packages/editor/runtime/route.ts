@@ -1,6 +1,8 @@
+import { HashMessage, HistoryMessage } from 'shared/types'
+
 window.addEventListener('hashchange', () => {
-  const action = {
-    type: 'hash',
+  const action: HashMessage = {
+    action: 'hash',
     url: window.location.hash
   }
   window.parent.postMessage(action, '*')
@@ -8,9 +10,9 @@ window.addEventListener('hashchange', () => {
 
 const __pushState = history.pushState
 history.pushState = function (data: any, unused: string, url?: string | URL | null) {
-  const action = {
-    type: 'history',
-    action: 'push',
+  const action: HistoryMessage = {
+    type: 'push',
+    action: 'history',
     url: data.current,
     data
   }
@@ -20,9 +22,9 @@ history.pushState = function (data: any, unused: string, url?: string | URL | nu
 
 const __replaceState = history.replaceState
 history.replaceState = function (data: any, unused: string, url?: string | URL | null) {
-  const action = {
-    type: 'history',
-    action: 'replace',
+  const action: HistoryMessage = {
+    type: 'replace',
+    action: 'history',
     url: data.current,
     data
   }
