@@ -12,7 +12,7 @@ const rebuildPlugin = async () => {
   })
 
   const build = async () => {
-    await run('pnpm run', ['build-plugin'])
+    await run('pnpm run', ['build:plugin'])
   }
 
   const debounceBuilder = debounce(async () => build(), 2000)

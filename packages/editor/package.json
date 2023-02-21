@@ -8,8 +8,8 @@
   "scripts": {
     "dev": "vite",
     "build": "esno ./scripts/build.ts",
-    "build-editor": "vue-tsc && vite build",
-    "build-plugin": "esno ./scripts/build-plugin.ts",
+    "build:editor": "vue-tsc && vite build",
+    "build:plugin": "esno ./scripts/build-plugin.ts",
     "typecheck": "tsc --noEmit && vue-tsc --noEmit",
     "preview": "vite preview",
     "prepublishOnly": "pnpm run build"

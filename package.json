@@ -8,8 +8,9 @@
   "scripts": {
     "example": "pnpm -F @mometa-vue/example run dev",
     "editor": "pnpm -F @mometa-vue/editor run dev",
-    "dev-plugin": "esno ./scripts/dev-plugin.ts",
-    "build-plugin": "pnpm -F @mometa-vue/editor run build-plugin",
+    "dev:plugin": "esno ./scripts/dev-plugin.ts",
+    "build:plugin": "pnpm -F @mometa-vue/editor run build:plugin",
+    "build:editor": "pnpm -F @mometa-vue/editor run build:editor",
     "build": "pnpm -F @mometa-vue/editor run build",
     "prepare": "husky install",
     "lint": "eslint",
