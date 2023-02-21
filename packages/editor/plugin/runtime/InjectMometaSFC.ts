@@ -86,7 +86,7 @@ const transformContent = (source: string, ast: any, customCom: Set<string>, file
 const InjectMometaSFC = (source: string, filename = 'app'): string => {
   const descriptor = parse(source).descriptor
   const ast = descriptor.template?.ast!
-  const customCom = new Set<string>(['router-link', 'transition', 'keep-alive'])
+  const customCom = new Set<string>(['router-link', 'transition', 'keep-alive', 'router-view'])
   getCustomComponent(descriptor, customCom)
 
   return transformContent(source, ast, customCom, filename)

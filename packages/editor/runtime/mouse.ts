@@ -3,7 +3,11 @@ const getValidMometaPath = (el: any) => {
   while (el && el !== document) {
     const mometa = el.__mometa
     if (mometa) {
-      path.push(mometa)
+      path.push({
+        mometa,
+        rect: el.getBoundingClientRect(),
+        name: mometa.name
+      })
     }
     el = el.parentElement
   }
@@ -18,6 +22,15 @@ window.addEventListener('mouseover', (e) => {
     {
       action: 'mometa',
       mometa
+    },
+    '*'
+  )
+})
+
+window.addEventListener('click', () => {
+  window.parent.postMessage(
+    {
+      action: 'selected'
     },
     '*'
   )

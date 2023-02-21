@@ -1,7 +1,7 @@
-type MessageType = 'history' | 'hash' | 'reload' | 'mometa'
+type MessageType = 'history' | 'hash' | 'reload' | 'mometa' | 'selected'
 
 interface Message {
-  mometa?: Mometa[]
+  mometa?: MometaPath[]
   type?: 'push' | 'replace'
   action: MessageType
   url?: string
@@ -20,11 +20,15 @@ interface HistoryMessage extends Message {
 }
 interface MometaMessage extends Message {
   action: 'mometa'
-  mometa: Mometa[]
+  mometa: MometaPath[]
 }
 
 interface ReloadMessage extends Message {
   action: 'reload'
+}
+
+interface SelectedMessage extends Message {
+  action: 'selected'
 }
 
 interface Loc {
@@ -43,4 +47,10 @@ interface Mometa {
   name: string
 }
 
-export type { HashMessage, HistoryMessage, MometaMessage, Mometa, ReloadMessage, Message }
+interface MometaPath {
+  name: string
+  rect: DOMRect
+  mometa: Mometa[]
+}
+
+export type { HashMessage, HistoryMessage, MometaMessage, Mometa, ReloadMessage, Message, MometaPath, SelectedMessage }

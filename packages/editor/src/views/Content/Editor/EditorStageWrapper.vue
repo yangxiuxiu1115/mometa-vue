@@ -2,12 +2,14 @@
   <div class="editor-stage_wrapper">
     <iframe ref="iframeRef" class="editor-iframe" :src="url" frameborder="0"></iframe>
   </div>
+  <EditorStagePrompt />
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { useEvent } from '@/hooks'
-import type { Message, MometaMessage } from '@shared/types'
+
+import EditorStagePrompt from './EditorStagePrompt.vue'
+
 const props = defineProps<{
   iframeUrl?: string
 }>()
@@ -25,23 +27,6 @@ const url = computed(() => {
 watch(iframeRef, (val) => {
   emit('iframeChange', val)
 })
-
-const recieveMessage = (ev: MessageEvent<Message>) => {
-  let origin: string
-  if (import.meta.env.DEV) {
-    origin = 'http://127.0.0.1:5174'
-  } else {
-    origin = '/'
-  }
-  if (ev.origin === origin) {
-    if (ev.data.action === 'mometa') {
-      const data = ev.data as MometaMessage
-      console.log(data)
-    }
-  }
-}
-
-useEvent('message', recieveMessage)
 </script>
 
 <style scoped lang="less">
