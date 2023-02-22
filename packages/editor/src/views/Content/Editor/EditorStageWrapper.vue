@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-stage_wrapper">
+  <div class="editor-stage__iframe-wrapper">
     <iframe ref="iframeRef" class="editor-iframe" :src="url" frameborder="0"></iframe>
   </div>
   <EditorStagePrompt />
@@ -30,7 +30,7 @@ watch(iframeRef, (val) => {
 </script>
 
 <style scoped lang="less">
-.editor-stage_wrapper {
+.editor-stage__iframe-wrapper {
   width: 100%;
   height: 100%;
   .editor-iframe {

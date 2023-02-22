@@ -1,7 +1,7 @@
 <template>
   <div class="editor-stage">
     <EditorStageWidget :iframe-ref="iframeRef" @url-change="urlChange" />
-    <div style="flex: 1 1; padding: 20px; background-color: rgb(226, 229, 236)">
+    <div class="editor-stage__wrapper">
       <EditorStageWrapper :iframe-url="iframeUrl" @iframe-change="iframeChange" />
     </div>
   </div>
@@ -30,5 +30,11 @@ const iframeChange = (el?: HTMLIFrameElement) => {
   height: 100%;
   display: flex;
   flex-direction: column;
+  .editor-stage__wrapper {
+    flex: 1 1;
+    padding: 20px;
+    background-color: rgb(226, 229, 236);
+    position: relative;
+  }
 }
 </style>
