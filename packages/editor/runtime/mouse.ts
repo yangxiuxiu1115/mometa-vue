@@ -27,6 +27,19 @@ window.addEventListener('mouseover', (e) => {
   )
 })
 
+window.addEventListener('mouseout', (e: any) => {
+  const toElement = e.toElement
+  if (!toElement) {
+    window.parent.postMessage(
+      {
+        action: 'mometa',
+        mometa: []
+      },
+      '*'
+    )
+  }
+})
+
 window.addEventListener('click', () => {
   window.parent.postMessage(
     {
