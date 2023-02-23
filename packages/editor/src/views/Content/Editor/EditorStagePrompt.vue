@@ -39,14 +39,24 @@ type NodeStyle = {
   name: string
 } | null
 
+const props = defineProps<{
+  isResizing: boolean
+}>()
+
 const [isEdit] = useInject<boolean>('isEdit')
-watch(isEdit, (val) => {
-  if (!val) {
-    mometaPath.value = []
-    hoverStyle.value = null
-    selectedStyle.value = null
+watch(
+  () => [isEdit, props.isResizing],
+  (vals) => {
+    for (const val of vals) {
+      if (!val) {
+        mometaPath.value = []
+        hoverStyle.value = null
+        selectedStyle.value = null
+        break
+      }
+    }
   }
-})
+)
 
 const mometaPath = shallowRef<MometaPath[]>([])
 const hoverStyle = shallowRef<NodeStyle>(null)

@@ -1,12 +1,12 @@
 <template>
-  <div class="editor-stage__iframe-wrapper">
+  <div ref="iframeWrapperRef" class="editor-stage__iframe-wrapper">
     <iframe ref="iframeRef" class="editor-iframe" :src="url" frameborder="0"></iframe>
   </div>
-  <EditorStagePrompt />
+  <EditorStagePrompt :is-resizing="isResizing" />
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, onMounted, onUnmounted } from 'vue'
 
 import EditorStagePrompt from './EditorStagePrompt.vue'
 
@@ -27,6 +27,28 @@ const url = computed(() => {
 watch(iframeRef, (val) => {
   emit('iframeChange', val)
 })
+
+const isResizing = ref(false)
+let stopId: number
+let resize: ResizeObserver
+onMounted(() => {
+  if (iframeRef.value) {
+    resize = new ResizeObserver(() => {
+      if (stopId) {
+        cancelAnimationFrame(stopId)
+      }
+      isResizing.value = true
+      stopId = requestAnimationFrame(() => {
+        isResizing.value = false
+      })
+    })
+    resize.observe(iframeRef.value)
+  }
+})
+
+onUnmounted(() => {
+  resize.disconnect()
+})
 </script>
 
 <style scoped lang="less">
@@ -36,6 +58,7 @@ watch(iframeRef, (val) => {
   .editor-iframe {
     width: 100%;
     height: 100%;
+    overflow: hidden;
   }
 }
 </style>
