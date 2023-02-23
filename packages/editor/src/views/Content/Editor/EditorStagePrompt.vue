@@ -12,16 +12,16 @@
       <div class="node-borders__text hover-node__text">{{ hoverStyle.name }}</div>
     </div>
     <div
-      v-if="selectedStyle"
+      v-if="selectedNode"
       class="node-borders selected-node"
       :style="{
-        width: `${selectedStyle.rect.width + 1}px`,
-        height: `${selectedStyle.rect.height + 1}px`,
-        transform: `translate(${selectedStyle.rect.left + 20}px, ${selectedStyle.rect.top + 20}px)`
+        width: `${selectedNode.rect.width}px`,
+        height: `${selectedNode.rect.height}px`,
+        transform: `translate(${selectedNode.rect.left + 20}px, ${selectedNode.rect.top + 20}px)`
       }"
     >
       <div class="node-borders__text selected-node__text">
-        <span>{{ selectedStyle.name }}</span>
+        <span>{{ selectedNode.name }}</span>
       </div>
     </div>
   </div>
@@ -32,18 +32,14 @@ import { shallowRef, watch } from 'vue'
 
 import { useEvent, useInject } from '@/hooks'
 import { isEqual } from '@/utils'
-import type { Message, MometaPath, MometaMessage } from '@shared/types'
-
-type NodeStyle = {
-  rect: DOMRect
-  name: string
-} | null
+import type { Message, MometaPath, MometaMessage, NodeStyle } from '@shared/types'
 
 const props = defineProps<{
   isResizing: boolean
 }>()
 
 const [isEdit] = useInject<boolean>('isEdit')
+const [selectedNode, changeSelectNode] = useInject<NodeStyle>('selectNode')
 watch(
   () => [isEdit, props.isResizing],
   (vals) => {
@@ -51,7 +47,7 @@ watch(
       if (!val) {
         mometaPath.value = []
         hoverStyle.value = null
-        selectedStyle.value = null
+        selectedNode.value = null
         break
       }
     }
@@ -60,18 +56,14 @@ watch(
 
 const mometaPath = shallowRef<MometaPath[]>([])
 const hoverStyle = shallowRef<NodeStyle>(null)
-const selectedStyle = shallowRef<NodeStyle>(null)
 watch(mometaPath, (val) => {
   if (val.length) {
     const hover = val[0]
-    if (selectedStyle.value && isEqual(hover, selectedStyle.value, ['rect', 'name'])) {
+    if (selectedNode.value && isEqual(hover, selectedNode.value, ['rect', 'name'])) {
       hoverStyle.value = null
       return
     }
-    hoverStyle.value = {
-      rect: hover.rect,
-      name: hover.name
-    }
+    hoverStyle.value = hover
   } else {
     hoverStyle.value = null
   }
@@ -90,7 +82,7 @@ const recieveMessage = (ev: MessageEvent<Message>) => {
       mometaPath.value = data.mometa
     }
     if (ev.data.action === 'selected') {
-      selectedStyle.value = hoverStyle.value
+      changeSelectNode(hoverStyle.value)
       hoverStyle.value = null
     }
   }

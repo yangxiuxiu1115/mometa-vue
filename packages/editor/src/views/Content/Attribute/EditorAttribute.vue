@@ -11,12 +11,21 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue'
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue'
+import type { NodeStyle } from '@shared/types'
+import { useInject } from '@/hooks'
 
 const props = defineProps<{
   rightPanalCollapse: boolean
 }>()
 const emits = defineEmits(['changeRightPanalCollapse'])
+
+const [selectNode] = useInject<NodeStyle>('selectNode')
+
+watch(selectNode, () => {
+  console.log(selectNode.value)
+})
 
 const handleCollapse = () => {
   emits('changeRightPanalCollapse', !props.rightPanalCollapse)

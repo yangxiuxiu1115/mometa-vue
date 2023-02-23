@@ -3,9 +3,11 @@ import EditorHeader from './views/Header/EditorHeader.vue'
 import { EditorAttribute, EditorMaterial, EditorStage } from './views/Content'
 
 import { useProvider, useState } from '@/hooks'
+import type { NodeStyle } from '@shared/types'
 
 useProvider('isEdit', true)
 useProvider('showAddress', true)
+useProvider<NodeStyle>('selectNode', null)
 
 const [leftPanalCollapse, changeLeftPanalCollapse] = useState<boolean>(false)
 const [rightPanalCollapse, changeRightPanalCollapse] = useState<boolean>(false)

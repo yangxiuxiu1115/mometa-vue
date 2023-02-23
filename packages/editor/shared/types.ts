@@ -50,7 +50,23 @@ interface Mometa {
 interface MometaPath {
   name: string
   rect: DOMRect
-  mometa: Mometa[]
+  mometa: Mometa
 }
 
-export type { HashMessage, HistoryMessage, MometaMessage, Mometa, ReloadMessage, Message, MometaPath, SelectedMessage }
+type NodeStyle = {
+  name: string
+  rect: DOMRect
+  mometa: Mometa
+} | null
+
+export type {
+  NodeStyle,
+  HashMessage,
+  HistoryMessage,
+  MometaMessage,
+  Mometa,
+  ReloadMessage,
+  Message,
+  MometaPath,
+  SelectedMessage
+}
