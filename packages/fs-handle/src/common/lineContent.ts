@@ -1,5 +1,5 @@
-import prettier from 'prettier/standalone'
-import parserHTML from 'prettier/parser-html'
+import prettier from 'prettier/standalone.js'
+import parserHTML from 'prettier/parser-html.js'
 import { Loc } from '../types'
 
 export default class LineContent {
@@ -20,7 +20,7 @@ export default class LineContent {
     let i = startLine
     while (i <= endLine) {
       if (i === startLine) {
-        code.push(this.content[i - 1].slice(startColumn))
+        code.push(this.content[i - 1].slice(startColumn - 1))
       } else if (i === endLine) {
         code.push(this.content[i - 1].slice(0, endColumn))
       } else {
