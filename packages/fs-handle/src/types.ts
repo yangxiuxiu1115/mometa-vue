@@ -53,4 +53,12 @@ export interface MovePreload
   type: NODEOPTION.MOVE
 }
 
-export type Preload = MovePreload | InsertPreload | ReplacePreload | DelPreload
+export interface ChangePreload
+  extends CommonPreload<{
+    start: Loc
+    end: Loc
+  }> {
+  type: NODEOPTION.CHANGE
+}
+
+export type Preload = MovePreload | InsertPreload | ReplacePreload | DelPreload | ChangePreload
