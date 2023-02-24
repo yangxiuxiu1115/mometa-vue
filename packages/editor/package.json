@@ -30,11 +30,15 @@
     "@babel/parser": "^7.20.7",
     "@babel/traverse": "^7.20.12",
     "@babel/types": "^7.20.7",
+    "@codemirror/lang-html": "^6.4.2",
+    "@mometa-vue/fs-handle": "workspace:^1.0.0",
     "@vue/compiler-sfc": "^3.2.45",
     "ant-design-vue": "^3.2.15",
     "cheerio": "1.0.0-rc.12",
+    "codemirror": "^6.0.1",
     "es-module-lexer": "^1.1.1",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "vue-codemirror": "^6.1.1"
   },
   "devDependencies": {
     "@types/babel__generator": "^7.6.4",

@@ -44,11 +44,20 @@ watch(
   () => [isEdit, props.isResizing],
   (vals) => {
     for (const val of vals) {
-      if (!val) {
-        mometaPath.value = []
-        hoverStyle.value = null
-        selectedNode.value = null
-        break
+      if (typeof val === 'boolean') {
+        if (!val) {
+          mometaPath.value = []
+          hoverStyle.value = null
+          selectedNode.value = null
+          break
+        }
+      } else {
+        if (!val.value) {
+          mometaPath.value = []
+          hoverStyle.value = null
+          selectedNode.value = null
+          break
+        }
       }
     }
   }

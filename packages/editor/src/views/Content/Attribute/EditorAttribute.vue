@@ -1,7 +1,14 @@
 <template>
   <div class="editor-attribute">
     <a-tabs :class="{ 'ant-tabs_hidden': props.rightPanalCollapse }">
-      <a-tab-pane key="attribute" tab="属性">attribute</a-tab-pane>
+      <a-tab-pane key="attribute" tab="属性">
+        <template v-if="selectNode">
+          <CodeMirror />
+        </template>
+        <template v-else>
+          <a-empty />
+        </template>
+      </a-tab-pane>
     </a-tabs>
     <div class="colse-btn" @click="handleCollapse">
       <double-left-outlined v-if="props.rightPanalCollapse" :style="{ color: 'rgb(24, 144, 255)' }" />
@@ -13,8 +20,12 @@
 <script setup lang="ts">
 import { watch } from 'vue'
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue'
+
+import CodeMirror from '@/components/CodeMirror.vue'
+
 import type { NodeStyle } from '@shared/types'
 import { useInject } from '@/hooks'
+import { http } from '@/utils'
 
 const props = defineProps<{
   rightPanalCollapse: boolean
@@ -23,8 +34,20 @@ const emits = defineEmits(['changeRightPanalCollapse'])
 
 const [selectNode] = useInject<NodeStyle>('selectNode')
 
-watch(selectNode, () => {
-  console.log(selectNode.value)
+watch(selectNode, async (val, _, onCleanUp) => {
+  if (val) {
+    const { httpRequest, abort } = http('nodeopt', {
+      type: 4,
+      filename: val.mometa.filename,
+      data: {
+        start: val.mometa.start,
+        end: val.mometa.end
+      }
+    })
+    onCleanUp(abort)
+    const res = await (await httpRequest).text()
+    console.log(res)
+  }
 })
 
 const handleCollapse = () => {

@@ -28,7 +28,7 @@ watch(iframeRef, (val) => {
   emit('iframeChange', val)
 })
 
-const isResizing = ref(false)
+const isResizing = ref(true)
 let stopId: number
 let resize: ResizeObserver
 onMounted(() => {
@@ -37,9 +37,10 @@ onMounted(() => {
       if (stopId) {
         cancelAnimationFrame(stopId)
       }
-      isResizing.value = true
+      isResizing.value = false
+
       stopId = requestAnimationFrame(() => {
-        isResizing.value = false
+        isResizing.value = true
       })
     })
     resize.observe(iframeRef.value)
