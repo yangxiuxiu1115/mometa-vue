@@ -2,7 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createFilter, PluginOption } from 'vite'
 
-import { InjectMometaElementV3, InjectMometaSFC, InjectRuntime } from './runtime'
+import { InjectMometaSFC, InjectRuntime } from './runtime'
 import middlewares from './middleware'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -44,7 +44,7 @@ const Mometa = function (customOptions: object): PluginOption {
           code: InjectMometaSFC(src, id)
         }
       }
-      return InjectMometaElementV3(src, id, isJS)
+      // return InjectMometaElementV3(src, id, isJS)
     },
     transformIndexHtml: {
       order: 'pre',

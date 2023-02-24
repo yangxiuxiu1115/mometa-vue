@@ -1,7 +1,7 @@
 const getValidMometaPath = (el: any) => {
   const path = []
   while (el && el !== document) {
-    const mometa = el.__mometa
+    const mometa = el.mometa
     if (mometa) {
       path.push({
         mometa,
