@@ -21,4 +21,5 @@ const nodeOptMiddleware: Connect.NextHandleFunction = (req, res, next) => {
   }
 }
 
+export * from './src'
 export default nodeOptMiddleware
