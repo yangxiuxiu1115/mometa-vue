@@ -29,7 +29,14 @@ export default class LineContent {
       i++
     }
 
-    return code.join('\n')
+    try {
+      return prettier.format(code.join('\n'), {
+        parser: 'html',
+        plugins: [parserHTML]
+      })
+    } catch (error) {
+      return ''
+    }
   }
 
   insert(code: string, end: Loc) {
