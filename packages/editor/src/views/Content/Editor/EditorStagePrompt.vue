@@ -41,23 +41,14 @@ const props = defineProps<{
 const [isEdit] = useInject<boolean>('isEdit')
 const [selectedNode, changeSelectNode] = useInject<NodeStyle>('selectNode')
 watch(
-  () => [isEdit, props.isResizing],
+  () => [isEdit.value, props.isResizing],
   (vals) => {
     for (const val of vals) {
-      if (typeof val === 'boolean') {
-        if (!val) {
-          mometaPath.value = []
-          hoverStyle.value = null
-          selectedNode.value = null
-          break
-        }
-      } else {
-        if (!val.value) {
-          mometaPath.value = []
-          hoverStyle.value = null
-          selectedNode.value = null
-          break
-        }
+      if (!val) {
+        mometaPath.value = []
+        hoverStyle.value = null
+        selectedNode.value = null
+        break
       }
     }
   }

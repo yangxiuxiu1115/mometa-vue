@@ -3,7 +3,7 @@
     <a-tabs :class="{ 'ant-tabs_hidden': props.rightPanalCollapse }">
       <a-tab-pane key="attribute" tab="属性">
         <template v-if="selectNode">
-          <CodeMirror />
+          <CodeMirror v-model:code="code" :range="range" :filename="filename" />
         </template>
         <template v-else>
           <a-empty />
@@ -18,10 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
+import { watch, ref, shallowRef } from 'vue'
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue'
 
 import CodeMirror from '@/components/CodeMirror.vue'
+import type { Loc } from '@mometa-vue/fs-handle'
 
 import type { NodeStyle } from '@shared/types'
 import { useInject } from '@/hooks'
@@ -33,20 +34,31 @@ const props = defineProps<{
 const emits = defineEmits(['changeRightPanalCollapse'])
 
 const [selectNode] = useInject<NodeStyle>('selectNode')
+const code = ref('')
+const range = shallowRef<{
+  start: Loc
+  end: Loc
+}>()
+const filename = ref('')
 
 watch(selectNode, async (val, _, onCleanUp) => {
   if (val) {
+    range.value = {
+      start: val.mometa.start,
+      end: val.mometa.end
+    }
+    filename.value = val.mometa.filename
     const { httpRequest, abort } = http('nodeopt', {
       type: 4,
-      filename: val.mometa.filename,
-      data: {
-        start: val.mometa.start,
-        end: val.mometa.end
-      }
+      filename: filename.value,
+      data: range.value
     })
-    onCleanUp(abort)
-    const res = await (await httpRequest).text()
-    console.log(res)
+    onCleanUp(() => {
+      try {
+        abort()
+      } catch (error) {}
+    })
+    code.value = await (await httpRequest).text()
   }
 })
 

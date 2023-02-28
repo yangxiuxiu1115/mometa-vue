@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <a-layout class="layout" :style="{ height: '100%' }">
@@ -16,7 +15,9 @@
     <a-layout-content>
       <router-view></router-view>
     </a-layout-content>
-    <a-layout-footer style="text-align: center"> Ant Design ©2018 Created by Ant UED </a-layout-footer>
+    <a-layout-footer style="text-align: center">
+      Ant Design ©2018 Created by Ant UED
+    </a-layout-footer>
   </a-layout>
 </template>
 
