@@ -2,11 +2,18 @@
   "name": "@lowcode/materials",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js"
+    }
+  },
   "scripts": {
     "generate": "esno ./generate.ts",
-    "temp": "esno ./temp.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build": "esno ../../scripts/build.ts"
   },
   "keywords": [],
   "author": "",
