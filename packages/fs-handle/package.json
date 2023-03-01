@@ -11,7 +11,7 @@
     }
   },
   "scripts": {
-    "build": "esno ./scripts/build.ts",
+    "build": "esno ../../scripts/build.ts",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [],
