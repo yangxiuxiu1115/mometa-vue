@@ -64,6 +64,7 @@ importers:
       '@babel/types': ^7.20.7
       '@codemirror/lang-html': ^6.4.2
       '@mometa-vue/fs-handle': workspace:^1.0.0
+      '@mometa-vue/materials': workspace:^1.0.0
       '@types/babel__generator': ^7.6.4
       '@types/babel__traverse': ^7.18.3
       '@types/node': ^18.11.18
@@ -85,6 +86,7 @@ importers:
       '@babel/types': 7.20.7
       '@codemirror/lang-html': 6.4.2
       '@mometa-vue/fs-handle': link:../fs-handle
+      '@mometa-vue/materials': link:../materials
       '@vue/compiler-sfc': 3.2.45
       ant-design-vue: 3.2.15
       cheerio: 1.0.0-rc.12

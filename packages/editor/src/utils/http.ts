@@ -1,12 +1,15 @@
 const origin = import.meta.env.DEV ? `http://127.0.0.1:5174` : ''
-const http = (url: string, body: any) => {
+
+type MethodType = 'post' | 'get' | 'put' | 'delete' | 'patch'
+
+const http = (url: string, body: any, method: MethodType = 'post') => {
   const { signal, abort } = new AbortController()
   const httpRequest = fetch(`${origin}/${url}`, {
-    method: 'post',
+    method,
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(body),
+    body: method !== 'get' ? JSON.stringify(body) : undefined,
     signal
   })
 
