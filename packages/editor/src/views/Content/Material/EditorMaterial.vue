@@ -2,7 +2,9 @@
   <div class="editor-material">
     <a-tabs :class="{ 'ant-tabs_hidden': props.leftPanalCollapse }">
       <a-tab-pane key="Local Mat" tab="Local Mat">Local Mat</a-tab-pane>
-      <a-tab-pane key="Antd" tab="Antd">Antd</a-tab-pane>
+      <a-tab-pane key="Antd" tab="Antd">
+        <EditorAntdV />
+      </a-tab-pane>
     </a-tabs>
     <div class="colse-btn" @click="handleCollapse">
       <DoubleRightOutlined v-if="props.leftPanalCollapse" :style="{ color: 'rgb(24, 144, 255)' }" />
@@ -13,6 +15,7 @@
 
 <script setup lang="ts">
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue'
+import EditorAntdV from './EditorAntdV.vue'
 
 const props = defineProps<{
   leftPanalCollapse: boolean
@@ -41,6 +44,10 @@ const handleCollapse = () => {
     flex: 1;
     opacity: 1;
     transition: all ease 0.25s;
+    :deep(.ant-tabs-content) {
+      width: 100%;
+      height: 100%;
+    }
   }
   .colse-btn {
     width: 20px;
