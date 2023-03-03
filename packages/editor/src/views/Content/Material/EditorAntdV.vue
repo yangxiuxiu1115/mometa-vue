@@ -1,33 +1,18 @@
 <template>
-  <div class="editor-antdv">
-    <div v-for="assertGroups in antdv?.assertGroups" :key="assertGroups.key" class="editor-antdv__assert-group">
-      <span>{{ assertGroups.name }}</span>
-      <a-list :grid="{ gutter: 3, column: 3 }" :data-source="assertGroups.asserts" size="small">
-        <template #renderItem="{ item }">
-          <a-list-item>
-            <a-card hoverable>
-              <template #cover>
-                <img class="editor-antdv-item__img" :src="item.cover" />
-              </template>
-              <a-card-meta :title="item.name"> </a-card-meta>
-            </a-card>
-          </a-list-item>
-        </template>
-      </a-list>
-    </div>
-  </div>
+  <MaterialList :materials="antdv" />
 </template>
 
 <script setup lang="ts">
 import { shallowRef, onMounted } from 'vue'
 import type { Material } from '@mometa-vue/materials'
+
+import MaterialList from '@/components/MaterialList.vue'
+
 import { http } from '@/utils'
 
 const antdv = shallowRef<Material>()
-
 onMounted(async () => {
   const { httpRequest } = http('material', null, 'get')
-
   antdv.value = JSON.parse(await (await httpRequest).text())
 })
 </script>
@@ -36,27 +21,51 @@ onMounted(async () => {
 .editor-antdv {
   width: 100%;
   height: 100%;
+  padding-left: 5px;
   overflow-y: scroll;
-  padding: 10px;
-  .editor-antdv__assert-group {
-    width: 100%;
-    margin-bottom: 10px;
-    overflow: hidden;
-    transition: height ease 0.25s;
-    :deep(.ant-list-item) {
-      margin-bottom: 0;
-      padding: 5px;
-      .ant-card {
-        padding: 5px;
-        .editor-antdv-item__img {
-          height: 70px;
-          width: 60px;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  .ant-collapse {
+    border: none;
+    .ant-collapse-item {
+      :deep(.ant-collapse-header) {
+        font-size: 6px;
+        font-weight: 600;
+        padding: 8px 10px;
+        background-color: white;
+      }
+      :deep(.ant-collapse-content-box) {
+        padding: 0;
+      }
+      .editor-andv-card {
+        display: flex;
+        padding: 12px;
+        flex-direction: column;
+        height: 114px;
+        justify-content: space-between;
+        align-items: center;
+        border-right: 1px solid #eaeaea;
+        border-bottom: 1px solid #eaeaea;
+        cursor: pointer;
+        transition: box-shadow 0.2s ease, -webkit-box-shadow 0.2s ease;
+        &:hover {
+          box-shadow: 0 6px 16px 0 rgb(0 0 0 / 15%);
+          border-color: transparent;
+        }
+        .editor-andv-card__img {
+          width: 56px;
+          height: 56px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
         }
       }
     }
-    :deep(.ant-card-body) {
-      padding: 0;
-    }
+  }
+  .editor-antdv__search {
+    padding-bottom: 10px;
   }
 }
 </style>

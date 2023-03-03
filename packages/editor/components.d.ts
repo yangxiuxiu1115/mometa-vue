@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     AEmpty: typeof import('ant-design-vue/es')['Empty']
     AImage: typeof import('ant-design-vue/es')['Image']
     AInput: typeof import('ant-design-vue/es')['Input']
+    AInputSearch: typeof import('ant-design-vue/es')['InputSearch']
     ALayout: typeof import('ant-design-vue/es')['Layout']
     ALayoutContent: typeof import('ant-design-vue/es')['LayoutContent']
     ALayoutHeader: typeof import('ant-design-vue/es')['LayoutHeader']
@@ -28,5 +29,7 @@ declare module '@vue/runtime-core' {
     ATabs: typeof import('ant-design-vue/es')['Tabs']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     CodeMirror: typeof import('./src/components/CodeMirror.vue')['default']
+    MaterialList: typeof import('./src/components/MaterialList.vue')['default']
+    Materials: typeof import('./src/components/Materials.vue')['default']
   }
 }
