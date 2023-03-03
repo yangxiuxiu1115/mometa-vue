@@ -77,6 +77,8 @@ const onSearch = () => {
 .editor-antdv {
   width: 100%;
   height: 100%;
+  min-width: 280px;
+  overflow: hidden;
   padding-left: 5px;
   overflow-y: scroll;
   &::-webkit-scrollbar {

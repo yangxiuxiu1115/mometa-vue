@@ -1,6 +1,6 @@
 <template>
   <div class="editor-material">
-    <a-tabs :class="{ 'ant-tabs_hidden': props.leftPanalCollapse }">
+    <a-tabs :class="{ 'ant-tabs_hidden': leftPanalCollapse }">
       <a-tab-pane key="Local Mat" tab="Local Mat">Local Mat</a-tab-pane>
       <a-tab-pane key="Antd" tab="Antd">
         <EditorAntdV />

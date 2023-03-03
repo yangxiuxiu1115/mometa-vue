@@ -5,9 +5,7 @@
 <script setup lang="ts">
 import { shallowRef, onMounted } from 'vue'
 import type { Material } from '@mometa-vue/materials'
-
 import MaterialList from '@/components/MaterialList.vue'
-
 import { http } from '@/utils'
 
 const antdv = shallowRef<Material>()
