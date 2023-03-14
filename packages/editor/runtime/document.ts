@@ -1,3 +1,5 @@
+import type { Mometa } from '@shared/types'
+
 const originCreateElement = document.createElement
 
 document.createElement = function (tagName: string, options?: ElementCreationOptions) {
@@ -5,7 +7,16 @@ document.createElement = function (tagName: string, options?: ElementCreationOpt
 
   Object.defineProperty(el, 'mometa', {
     enumerable: true,
-    writable: true
+    set(value: Mometa) {
+      const path = el.getAttribute('__mometa')
+      ;(el as any).__mometa = {
+        ...value,
+        path
+      }
+    },
+    get() {
+      return (el as any).__mometa
+    }
   })
 
   return el

@@ -16,22 +16,22 @@ import {
 describe('test injectMometaSFC', () => {
   it('common element', () => {
     const commonSFC = injectMometaSFC(common)
-    expect(commonSFC).toBe(commonTest)
+    expect(commonSFC).toEqual(commonTest)
   })
 
   it('component element', () => {
     const componentSFC = injectMometaSFC(component)
-    expect(componentSFC).toBe(componentTest)
+    expect(componentSFC).toEqual(componentTest)
   })
 
   it('VFor element', () => {
     const VForSFC = injectMometaSFC(VFor)
-    expect(VForSFC).toBe(VForTest)
+    expect(VForSFC).toEqual(VForTest)
   })
 
   it('ui element', () => {
     const uicomponentSFC = injectMometaSFC(uicomponent)
-    expect(uicomponentSFC).toBe(uicomponentTest)
+    expect(uicomponentSFC).toEqual(uicomponentTest)
   })
 
   it('slot element', () => {

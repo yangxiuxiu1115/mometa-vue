@@ -45,6 +45,7 @@ interface Mometa {
   isComponent: boolean
   slotName?: string
   name: string
+  path: string
 }
 
 interface MometaPath {
