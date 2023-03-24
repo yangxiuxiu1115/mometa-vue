@@ -22,4 +22,21 @@ document.createElement = function (tagName: string, options?: ElementCreationOpt
   return el
 }
 
+const originDefineProperty = Object.defineProperty
+
+Object.defineProperty = function (obj: any, prop: string, descriptor: PropertyDescriptor & ThisType<any>): any {
+  const newDescriptor = { ...descriptor }
+  if (obj instanceof HTMLElement && prop === '__vnode') {
+    const value = descriptor.value
+    const mometa = value.props?.mometa || value.ctx.attrs?.mometa
+    if (mometa) {
+      newDescriptor.value = {
+        ...value,
+        __mometa: mometa
+      }
+    }
+  }
+  return originDefineProperty.call(this, obj, prop, newDescriptor)
+}
+
 export {}

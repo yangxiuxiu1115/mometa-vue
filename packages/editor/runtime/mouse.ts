@@ -1,8 +1,12 @@
 const getValidMometaPath = (el: any) => {
   const path = []
   while (el && el !== document) {
-    const mometa = el.mometa
+    const mometa = el.__vnode?.__mometa
     if (mometa) {
+      const last = path[path.length - 1]
+      if (mometa === last?.mometa) {
+        path.pop()
+      }
       path.push({
         mometa,
         rect: el.getBoundingClientRect(),
@@ -18,6 +22,7 @@ const getValidMometaPath = (el: any) => {
 window.addEventListener('mouseover', (e) => {
   const el = e.target
   const mometa = getValidMometaPath(el)
+  console.log(mometa)
   window.parent.postMessage(
     {
       action: 'mometa',
