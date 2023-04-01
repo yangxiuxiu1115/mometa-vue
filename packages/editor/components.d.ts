@@ -31,5 +31,6 @@ declare module '@vue/runtime-core' {
     CodeMirror: typeof import('./src/components/CodeMirror.vue')['default']
     MaterialList: typeof import('./src/components/MaterialList.vue')['default']
     Materials: typeof import('./src/components/Materials.vue')['default']
+    MonacoEditor: typeof import('./src/components/MonacoEditor.vue')['default']
   }
 }

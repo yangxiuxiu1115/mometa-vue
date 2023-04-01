@@ -22,7 +22,6 @@ const getValidMometaPath = (el: any) => {
 window.addEventListener('mouseover', (e) => {
   const el = e.target
   const mometa = getValidMometaPath(el)
-  console.log(mometa)
   window.parent.postMessage(
     {
       action: 'mometa',

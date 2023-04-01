@@ -3,7 +3,8 @@
     <a-tabs :class="{ 'ant-tabs_hidden': props.rightPanalCollapse }">
       <a-tab-pane key="attribute" tab="属性">
         <template v-if="selectNode">
-          <CodeMirror v-model:code="code" :range="range" :filename="filename" />
+          <!-- <CodeMirror v-model:code="code" :range="range" :filename="filename" /> -->
+          <monaco-editor :value="code"></monaco-editor>
         </template>
         <template v-else>
           <a-empty />
@@ -22,6 +23,7 @@ import { watch, ref, shallowRef } from 'vue'
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue'
 
 import CodeMirror from '@/components/CodeMirror.vue'
+import MonacoEditor from '@/components/MonacoEditor.vue'
 import type { Loc } from '@mometa-vue/fs-handle'
 
 import type { NodeStyle } from '@shared/types'
@@ -59,6 +61,8 @@ watch(selectNode, async (val, _, onCleanUp) => {
       } catch (error) {}
     })
     code.value = await (await httpRequest).text()
+  } else {
+    code.value = ''
   }
 })
 
@@ -85,6 +89,9 @@ const handleCollapse = () => {
     flex: 1;
     opacity: 1;
     transition: all ease 0.25s;
+    :deep(.ant-tabs-content) {
+      height: 100%;
+    }
   }
   .colse-btn {
     width: 20px;
