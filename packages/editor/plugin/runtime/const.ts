@@ -51,3 +51,5 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths)
+
+export const scriptCache = new Map<string, string>()

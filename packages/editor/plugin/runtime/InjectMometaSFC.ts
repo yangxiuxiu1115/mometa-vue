@@ -1,6 +1,7 @@
 import { parse, compileScript } from '@vue/compiler-sfc'
 import type { SFCDescriptor } from '@vue/compiler-sfc'
 import type { Mometa } from 'shared/types'
+import { scriptCache } from './const'
 
 const toString = (obj: any) => {
   if (typeof obj !== 'object') {
@@ -77,16 +78,16 @@ const transformContent = (source: string, ast: any, customCom: Set<string>, file
       path: "$attrs['__mometa']"
     }
 
-    const begain = start.column + node.tag.length
+    const began = start.column + node.tag.length
     const line = content[start.line - 1]
 
     // q: tagType的值有哪些?
     // a: 1: element, 2: component, 3: slot
     if (existComp(node.tag, customCom)) {
-      content[start.line - 1] = line.slice(0, begain) + ` __mometa="${index}" ` + line.slice(begain)
+      content[start.line - 1] = line.slice(0, began) + ` __mometa="${index}" ` + line.slice(began)
     } else {
       content[start.line - 1] =
-        line.slice(0, begain) + ` __mometa="${index}" :mometa="${toString(mometa)}" ` + line.slice(begain)
+        line.slice(0, began) + ` __mometa="${index}" :mometa="${toString(mometa)}" ` + line.slice(began)
     }
   }
 
@@ -101,6 +102,7 @@ const transformContent = (source: string, ast: any, customCom: Set<string>, file
 const InjectMometaSFC = (source: string, filename = 'app'): string => {
   const descriptor = parse(source).descriptor
   const ast = descriptor.template?.ast!
+  scriptCache.set(filename, descriptor.scriptSetup?.content || descriptor.script?.content || '')
   const customCom = new Set<string>(['router-link', 'transition', 'keep-alive', 'router-view'])
   getCustomComponent(descriptor, customCom)
 
