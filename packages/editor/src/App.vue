@@ -28,7 +28,7 @@ const [rightPanalCollapse, changeRightPanalCollapse] = useState<boolean>(false)
       <a-layout-content>
         <EditorStage />
       </a-layout-content>
-      <a-layout-sider :width="rightPanalCollapse ? '20px' : '300px'" class="panal-transition">
+      <a-layout-sider :width="rightPanalCollapse ? '20px' : '500px'" class="panal-transition">
         <EditorAttribute
           :right-panal-collapse="rightPanalCollapse"
           @change-right-panal-collapse="changeRightPanalCollapse"

@@ -4,13 +4,15 @@
 
 <script setup lang="ts">
 import { shallowRef, watchEffect, watch } from 'vue'
-import { editor, IDisposable } from './monaco'
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
+import autoImport from './typeResolve'
 const props = withDefaults(
   defineProps<{
     language?: 'typescript' | 'html' | 'css'
     readonly?: boolean
     onChange?: (value: string | undefined) => void
     value: string
+    content: string
   }>(),
   {
     language: 'html',
@@ -20,8 +22,8 @@ const props = withDefaults(
 )
 
 const monacoRef = shallowRef<HTMLElement>()
-const editorRef = shallowRef<editor.IStandaloneCodeEditor | null>()
-const subscriptionRef = shallowRef<IDisposable | undefined>(undefined)
+const editorRef = shallowRef<monaco.editor.IStandaloneCodeEditor | null>()
+const subscriptionRef = shallowRef<monaco.IDisposable | undefined>(undefined)
 const colorMode = shallowRef<'dark' | 'light'>('dark')
 
 watchEffect(() => {
@@ -35,14 +37,14 @@ watchEffect(() => {
 watch(
   () => [props.value, props.language],
   (newValue) => {
-    const { readonly } = props
+    const { readonly, content } = props
     const [value, language] = newValue
     if (editorRef.value) {
       editorRef.value.setValue(value)
+      autoImport.parse(content)
       return
     }
-    console.log(language)
-    editorRef.value = editor.create(monacoRef.value!, {
+    editorRef.value = monaco.editor.create(monacoRef.value!, {
       language,
       minimap: {
         enabled: false

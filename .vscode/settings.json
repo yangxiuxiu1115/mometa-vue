@@ -3,10 +3,14 @@
     "commitlint",
     "execa",
     "mometa",
+    "MOMETAURL",
+    "nodeopt",
+    "Panal",
     "picocolors",
     "tsup",
     "typecheck",
     "unplugin",
+    "Variabls",
     "yangxiuxiu"
   ]
 }

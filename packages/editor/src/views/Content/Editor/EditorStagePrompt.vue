@@ -42,8 +42,8 @@ const [isEdit] = useInject<boolean>('isEdit')
 const [selectedNode, changeSelectNode] = useInject<NodeStyle>('selectNode')
 watch(
   () => [isEdit.value, props.isResizing],
-  (vals) => {
-    for (const val of vals) {
+  (values) => {
+    for (const val of values) {
       if (!val) {
         mometaPath.value = []
         hoverStyle.value = null
@@ -68,7 +68,7 @@ watch(mometaPath, (val) => {
     hoverStyle.value = null
   }
 })
-const recieveMessage = (ev: MessageEvent<Message>) => {
+const receiveMessage = (ev: MessageEvent<Message>) => {
   if (!isEdit.value) return
   let origin: string
   if (import.meta.env.DEV) {
@@ -87,7 +87,7 @@ const recieveMessage = (ev: MessageEvent<Message>) => {
     }
   }
 }
-useEvent('message', recieveMessage)
+useEvent('message', receiveMessage)
 </script>
 
 <style scoped lang="less">

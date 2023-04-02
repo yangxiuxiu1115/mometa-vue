@@ -4,14 +4,14 @@
       <a-tab-pane key="attribute" tab="属性">
         <template v-if="selectNode">
           <!-- <CodeMirror v-model:code="code" :range="range" :filename="filename" /> -->
-          <monaco-editor :value="code"></monaco-editor>
+          <monaco-editor :value="code" :content="scriptCode"></monaco-editor>
         </template>
         <template v-else>
           <a-empty />
         </template>
       </a-tab-pane>
     </a-tabs>
-    <div class="colse-btn" @click="handleCollapse">
+    <div class="close-btn" @click="handleCollapse">
       <double-left-outlined v-if="props.rightPanalCollapse" :style="{ color: 'rgb(24, 144, 255)' }" />
       <double-right-outlined v-else :style="{ color: 'rgb(24, 144, 255)' }" />
     </div>
@@ -23,7 +23,7 @@ import { watch, ref, shallowRef } from 'vue'
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue'
 
 import CodeMirror from '@/components/CodeMirror.vue'
-import MonacoEditor from '@/components/MonacoEditor.vue'
+import MonacoEditor from '@/components/Monaco/MonacoEditor.vue'
 import type { Loc } from '@mometa-vue/fs-handle'
 
 import type { NodeStyle } from '@shared/types'
@@ -37,6 +37,7 @@ const emits = defineEmits(['changeRightPanalCollapse'])
 
 const [selectNode] = useInject<NodeStyle>('selectNode')
 const code = ref('')
+const scriptCode = ref('')
 const range = shallowRef<{
   start: Loc
   end: Loc
@@ -60,9 +61,12 @@ watch(selectNode, async (val, _, onCleanUp) => {
         abort()
       } catch (error) {}
     })
-    code.value = await (await httpRequest).text()
+    const data = JSON.parse(await (await httpRequest).text())
+    code.value = data.template
+    scriptCode.value = data.script
   } else {
     code.value = ''
+    scriptCode.value = ''
   }
 })
 
@@ -93,7 +97,7 @@ const handleCollapse = () => {
       height: 100%;
     }
   }
-  .colse-btn {
+  .close-btn {
     width: 20px;
     display: flex;
     align-items: center;
