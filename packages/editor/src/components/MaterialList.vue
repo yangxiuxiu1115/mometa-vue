@@ -7,7 +7,7 @@
       <a-collapse-panel v-for="assertGroup in cardList?.assertGroups" :key="assertGroup.key" :header="assertGroup.name">
         <a-list :grid="{ column: 3 }" :data-source="assertGroup.asserts" size="small">
           <template #renderItem="{ item }">
-            <div class="editor-andv-card">
+            <div class="editor-andv-card" draggable="true" @dragstart="dragStart($event, item)">
               <div class="editor-andv-card__img">
                 <img :alt="item.name" :src="item.cover" />
               </div>
@@ -21,8 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch, shallowRef } from 'vue'
-import type { Material } from '@mometa-vue/materials'
+import { reactive, ref, watch, shallowRef, inject } from 'vue'
+import type { Assert, Material } from '@mometa-vue/materials'
+import { useInject } from '@/hooks'
 
 const props = defineProps<{
   materials?: Material
@@ -71,6 +72,11 @@ const onSearch = () => {
     })
   }
 }
+
+const dragStart = (e: DragEvent, component: Assert) => {
+  const code = component.data.code
+  e.dataTransfer?.setData('text/plain', code)
+}
 </script>
 
 <style scoped lang="less">
@@ -87,8 +93,9 @@ const onSearch = () => {
   .ant-collapse {
     border: none;
     .ant-collapse-item {
+      user-select: none;
       :deep(.ant-collapse-header) {
-        font-size: 6px;
+        font-size: 12px;
         font-weight: 600;
         padding: 8px 10px;
         background-color: white;

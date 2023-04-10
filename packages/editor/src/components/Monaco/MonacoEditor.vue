@@ -6,6 +6,7 @@
 import { shallowRef, watchEffect, watch } from 'vue'
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
 import autoImport from './typeResolve'
+
 const props = withDefaults(
   defineProps<{
     language?: 'typescript' | 'html' | 'css'
@@ -61,6 +62,24 @@ watch(
       scrollBeyondLastLine: false,
       value
     })
+    ;(editorRef.value as any).onDropIntoEditor(
+      ({ position, event }: { position: monaco.Position; event: DragEvent }) => {
+        const monacoRef = editorRef.value!
+        const text = event.dataTransfer?.getData('text') || ''
+        console.log(text)
+        monacoRef.executeEdits('', [
+          {
+            range: new monaco.Range(position.lineNumber, position.column, position.lineNumber, position.column),
+            text
+          }
+        ])
+
+        setTimeout(() => {
+          monacoRef.trigger(null, 'undo', null)
+          monacoRef.trigger(null, 'editor.action.format', null)
+        })
+      }
+    )
   }
 )
 watchEffect(() => {

@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { shallowRef, watch } from 'vue'
+import { shallowRef, watch, inject, Ref } from 'vue'
 
 import { useEvent, useInject } from '@/hooks'
 import { isEqual } from '@/utils'
@@ -38,10 +38,10 @@ const props = defineProps<{
   isResizing: boolean
 }>()
 
-const [isEdit] = useInject<boolean>('isEdit')
+const isEdit = inject<Ref<boolean>>('isEdit')
 const [selectedNode, changeSelectNode] = useInject<NodeStyle>('selectNode')
 watch(
-  () => [isEdit.value, props.isResizing],
+  () => [isEdit!.value, props.isResizing],
   (values) => {
     for (const val of values) {
       if (!val) {
@@ -69,7 +69,7 @@ watch(mometaPath, (val) => {
   }
 })
 const receiveMessage = (ev: MessageEvent<Message>) => {
-  if (!isEdit.value) return
+  if (!isEdit!.value) return
   let origin: string
   if (import.meta.env.DEV) {
     origin = 'http://127.0.0.1:5174'

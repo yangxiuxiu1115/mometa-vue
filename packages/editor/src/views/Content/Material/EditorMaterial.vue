@@ -1,60 +1,61 @@
 <template>
-  <div class="editor-material">
-    <a-tabs :class="{ 'ant-tabs_hidden': leftPanalCollapse }">
+  <div ref="materialRef" class="editor-material">
+    <a-tooltip placement="right">
+      <template #title>
+        <span>物料</span>
+      </template>
+      <a-button shape="circle" @click="material = !material">
+        <template #icon><database-outlined /></template>
+      </a-button>
+    </a-tooltip>
+    <a-tabs v-show="material">
       <a-tab-pane key="Local Mat" tab="Local Mat">Local Mat</a-tab-pane>
       <a-tab-pane key="Antd" tab="Antd">
         <EditorAntdV />
       </a-tab-pane>
     </a-tabs>
-    <div class="colse-btn" @click="handleCollapse">
-      <DoubleRightOutlined v-if="props.leftPanalCollapse" :style="{ color: 'rgb(24, 144, 255)' }" />
-      <DoubleLeftOutlined v-else :style="{ color: 'rgb(24, 144, 255)' }" />
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue'
+import { ref, provide } from 'vue'
+import { DatabaseOutlined } from '@ant-design/icons-vue'
 import EditorAntdV from './EditorAntdV.vue'
 
-const props = defineProps<{
-  leftPanalCollapse: boolean
-}>()
-const emits = defineEmits(['changeLeftPanalCollapse'])
+import { useEvent } from '@/hooks'
 
-const handleCollapse = () => {
-  emits('changeLeftPanalCollapse', !props.leftPanalCollapse)
+const material = ref(false)
+const materialRef = ref<HTMLDivElement>()
+
+const handle = (e: MouseEvent) => {
+  if (e.composedPath().includes(materialRef.value!)) return
+  material.value = false
 }
+
+useEvent('click', handle, true)
 </script>
 
 <style scoped lang="less">
 .editor-material {
-  display: flex;
   height: 100%;
-
-  .ant-tabs.ant-tabs_hidden {
-    width: 0;
-    margin: 0;
-    opacity: 0;
-    padding: 0;
-    border: none;
-  }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
   .ant-tabs {
-    overflow: hidden;
-    flex: 1;
-    opacity: 1;
-    transition: all ease 0.25s;
+    position: absolute;
+    left: 40px;
+    top: 0;
+    background-color: white;
+    border: 1px solid #e8e8e8;
+    height: 100%;
+    min-width: 321px;
+    padding: 0 20px;
     :deep(.ant-tabs-content) {
       width: 100%;
       height: 100%;
     }
-  }
-  .colse-btn {
-    width: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
   }
 }
 </style>

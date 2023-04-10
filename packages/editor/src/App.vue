@@ -9,7 +9,6 @@ useProvider('isEdit', true)
 useProvider('showAddress', true)
 useProvider<NodeStyle>('selectNode', null)
 
-const [leftPanalCollapse, changeLeftPanalCollapse] = useState<boolean>(false)
 const [rightPanalCollapse, changeRightPanalCollapse] = useState<boolean>(false)
 </script>
 
@@ -19,11 +18,8 @@ const [rightPanalCollapse, changeRightPanalCollapse] = useState<boolean>(false)
       <EditorHeader />
     </a-layout-header>
     <a-layout>
-      <a-layout-sider :width="leftPanalCollapse ? '20px' : '300px'" class="panal-transition">
-        <EditorMaterial
-          :left-panal-collapse="leftPanalCollapse"
-          @change-left-panal-collapse="changeLeftPanalCollapse"
-        />
+      <a-layout-sider width="40px">
+        <EditorMaterial />
       </a-layout-sider>
       <a-layout-content>
         <EditorStage />
