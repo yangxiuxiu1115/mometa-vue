@@ -1,29 +1,42 @@
 <template>
   <div ref="iframeWrapperRef" class="editor-stage__iframe-wrapper">
-    <iframe ref="iframeRef" class="editor-iframe" :src="url" frameborder="0"></iframe>
+    <iframe
+      v-if="changeIframe"
+      ref="iframeRef"
+      class="editor-iframe"
+      :src="`${prefix}${iframeUrl}`"
+      frameborder="0"
+    ></iframe>
+    <iframe v-else ref="iframeRef" class="editor-iframe" :src="`${prefix}${iframeUrl}`" frameborder="0"></iframe>
   </div>
   <EditorStagePrompt :is-resizing="isResizing" />
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch, onMounted, onUnmounted } from 'vue'
+import { watch, onMounted, onUnmounted, ref } from 'vue'
 
 import EditorStagePrompt from './EditorStagePrompt.vue'
 
 const props = defineProps<{
-  iframeUrl?: string
+  iframeUrl: { url: string }
 }>()
 
 const emit = defineEmits(['iframeChange'])
-
+const prefix = import.meta.env.DEV ? `http://127.0.0.1:5174` : ''
 const iframeRef = ref<HTMLIFrameElement>()
-const url = computed(() => {
-  if (!props.iframeUrl) {
-    return import.meta.env.DEV ? `http://127.0.0.1:5174/` : '/'
+const iframeUrl = ref('')
+const changeIframe = ref(true)
+watch(
+  () => props.iframeUrl,
+  (val) => {
+    console.log(val)
+    changeIframe.value = !changeIframe.value
+    iframeUrl.value = val.url
+  },
+  {
+    immediate: true
   }
-  return import.meta.env.DEV ? `http://127.0.0.1:5174${props.iframeUrl}` : props.iframeUrl
-})
-
+)
 watch(iframeRef, (val) => {
   emit('iframeChange', val)
 })

@@ -65,8 +65,7 @@ watch(
     ;(editorRef.value as any).onDropIntoEditor(
       ({ position, event }: { position: monaco.Position; event: DragEvent }) => {
         const monacoRef = editorRef.value!
-        const text = event.dataTransfer?.getData('text') || ''
-        console.log(text)
+        const text = event.dataTransfer?.getData('application/plain') || ''
         monacoRef.executeEdits('', [
           {
             range: new monaco.Range(position.lineNumber, position.column, position.lineNumber, position.column),

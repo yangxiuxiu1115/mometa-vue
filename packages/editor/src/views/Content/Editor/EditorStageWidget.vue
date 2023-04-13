@@ -59,9 +59,10 @@ const goNext = () => {
   emit('urlChange', url())
 }
 const reload = () => {
-  historyStack.urls = [url()]
+  const urls = url()
+  historyStack.urls = [urls]
   historyStack.index = 0
-  props.iframeRef?.contentWindow?.postMessage('reload', '*')
+  emit('urlChange', urls)
 }
 
 const [inputValue, setInputValue] = useState(url())
@@ -86,10 +87,11 @@ const messageHandle = (ev: MessageEvent<Message>) => {
   } else {
     if (['history', 'hash'].includes(ev.data.action)) {
       const val = ev.data as HistoryMessage | HashMessage
+      const url = new URL(val.url, 'http://127.0.0.1:5173')
       if (val.type === 'replace') {
-        historyStack.urls[historyStack.index] = val.url
+        historyStack.urls[historyStack.index] = url.pathname
       } else {
-        historyStack.urls.push(val.url)
+        historyStack.urls.push(url.pathname)
         historyStack.index = historyStack.index + 1
       }
     }

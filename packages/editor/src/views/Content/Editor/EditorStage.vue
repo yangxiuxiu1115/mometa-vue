@@ -12,11 +12,11 @@ import { ref } from 'vue'
 import EditorStageWidget from './EditorStageWidget.vue'
 import EditorStageWrapper from './EditorStageWrapper.vue'
 
-const iframeUrl = ref<string>()
+const iframeUrl = ref({ url: '/' })
 const iframeRef = ref<HTMLIFrameElement>()
 
 const urlChange = (url: string) => {
-  iframeUrl.value = url
+  iframeUrl.value = { url }
 }
 
 const iframeChange = (el?: HTMLIFrameElement) => {

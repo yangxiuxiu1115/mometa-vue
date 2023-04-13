@@ -75,7 +75,7 @@ const onSearch = () => {
 
 const dragStart = (e: DragEvent, component: Assert) => {
   const code = component.data.code
-  e.dataTransfer?.setData('text/plain', code)
+  e.dataTransfer?.setData('application/plain', code)
 }
 </script>
 
