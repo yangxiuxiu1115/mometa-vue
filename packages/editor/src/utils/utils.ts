@@ -27,4 +27,14 @@ const isEqual = (obj1: object & { [key in string]: any }, obj2: object & { [key 
   return true
 }
 
-export { isObject, isEqual }
+const debounce = (fn: () => void, delay: number) => {
+  let timer: any = null
+  return () => {
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(() => {
+      fn()
+    }, delay)
+  }
+}
+
+export { isObject, isEqual, debounce }

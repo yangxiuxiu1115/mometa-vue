@@ -1,51 +1,8 @@
-import { parse, compileScript } from '@vue/compiler-sfc'
-import type { SFCDescriptor } from '@vue/compiler-sfc'
+import { parse } from '@vue/compiler-sfc'
+
 import type { Mometa } from 'shared/types'
 import { scriptCache } from './const'
-
-const toString = (obj: any) => {
-  if (typeof obj !== 'object') {
-    if (typeof obj === 'string') {
-      if (obj.startsWith('$attrs')) return `${obj}`
-      return `'${obj}'`
-    }
-    return obj
-  }
-  const keys = Object.keys(obj)
-  let res = `{`
-  res += keys
-    .filter((key) => obj[key] !== undefined && obj[key] !== null)
-    .map((key) => {
-      return ` ${key}: ${toString(obj[key])}`
-    })
-    .join(',')
-  res += `}`
-
-  return res
-}
-
-const existComp = (str: string, customCom: Set<string>) => {
-  if (customCom.has(str)) return true
-  const name = str
-    .split('-')
-    .map((item) => item.slice(0, 1).toUpperCase() + item.slice(1))
-    .join('')
-  return customCom.has(name)
-}
-
-const getCustomComponent = (descriptor: SFCDescriptor, customCom: Set<string>) => {
-  if (!descriptor.scriptSetup && !descriptor.script) return
-  const a = compileScript(descriptor, {
-    id: 'mometa'
-  })
-  const imports = a.imports
-  for (const key in imports) {
-    const source = imports[key].source
-    if (/\.vue$/.test(source)) {
-      customCom.add(key)
-    }
-  }
-}
+import { toString, existComp, getCustomComponent, formatProps } from '../utils'
 
 const transformContent = (source: string, ast: any, customCom: Set<string>, filename: string) => {
   const content = source.split('\n')
@@ -67,6 +24,7 @@ const transformContent = (source: string, ast: any, customCom: Set<string>, file
     if (node.tagType === 2 || node.tagType === 3) return
 
     const start = node.loc.start
+    const began = start.column + node.tag.length
     const mometa: Mometa = {
       start: node.loc.start,
       end: node.loc.end,
@@ -75,19 +33,16 @@ const transformContent = (source: string, ast: any, customCom: Set<string>, file
       isComponent: node.tag.startsWith('a-'),
       slotName,
       name: node.tag,
-      path: "$attrs['__mometa']"
+      began,
+      props: formatProps(node)
     }
-
-    const began = start.column + node.tag.length
+    
     const line = content[start.line - 1]
 
     // q: tagType的值有哪些?
     // a: 1: element, 2: component, 3: slot
-    if (existComp(node.tag, customCom)) {
-      content[start.line - 1] = line.slice(0, began) + ` __mometa="${index}" ` + line.slice(began)
-    } else {
-      content[start.line - 1] =
-        line.slice(0, began) + ` __mometa="${index}" :mometa="${toString(mometa)}" ` + line.slice(began)
+    if (!existComp(node.tag, customCom)) {
+      content[start.line - 1] = line.slice(0, began) + ` :mometa="${toString(mometa)}" ` + line.slice(began)
     }
   }
 

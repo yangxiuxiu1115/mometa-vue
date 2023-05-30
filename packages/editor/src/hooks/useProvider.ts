@@ -1,4 +1,4 @@
-import { provide, inject, ref } from 'vue'
+import { provide, inject, shallowRef } from 'vue'
 import type { Ref, UnwrapRef } from 'vue'
 
 type handleFunc<T> = (val: T) => void
@@ -9,10 +9,10 @@ const Splicing = (pre: string, last: string) => {
 
 const useProvider = <T = any>(key: string, defaultValue: T) => {
   const handleKey = Splicing('change', key)
-  const providerVal = ref(defaultValue)
+  const providerVal = shallowRef(defaultValue)
 
   provide(key, providerVal)
-  provide(handleKey, (val: UnwrapRef<T>) => {
+  provide(handleKey, (val: T) => {
     providerVal.value = val
   })
 

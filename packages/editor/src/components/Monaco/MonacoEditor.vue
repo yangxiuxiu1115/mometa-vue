@@ -6,6 +6,7 @@
 import { shallowRef, watchEffect, watch } from 'vue'
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
 import autoImport from './typeResolve'
+import { debounce } from '@/utils'
 
 const props = withDefaults(
   defineProps<{
@@ -30,8 +31,9 @@ const colorMode = shallowRef<'dark' | 'light'>('dark')
 watchEffect(() => {
   subscriptionRef.value?.dispose()
   if (props.onChange) {
+    const change = debounce(() => props.onChange!(editorRef.value?.getValue()), 2000)
     subscriptionRef.value = editorRef.value?.onDidChangeModelContent(() => {
-      props.onChange!(editorRef.value?.getValue())
+      change()
     })
   }
 })

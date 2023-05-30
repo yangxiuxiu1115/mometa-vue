@@ -25,7 +25,7 @@ const rebuildPlugin = async () => {
 async function devPlugin() {
   try {
     await rebuildPlugin()
-    console.log(logger.success('监听plugin成功'))
+    logger.success('监听plugin成功')
   } catch (error) {
     logger.err((error as Error).toString())
     process.exit()

@@ -65,6 +65,7 @@ export default class LineContent {
 
   replace(code: string, start: Loc, end: Loc) {
     this.del(start, end)
+    console.log(this.content.join('\n'))
     this.insert(code, start)
   }
 

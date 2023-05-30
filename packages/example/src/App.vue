@@ -3,7 +3,12 @@
 <template>
   <a-layout class="layout" :style="{ height: '100%' }">
     <a-layout-header>
-      <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
+      <a-menu
+        theme="dark"
+        mode="horizontal"
+        :style="{ lineHeight: '64px' }"
+        :age="18"
+      >
         <a-menu-item key="1">
           <router-link to="/page">page</router-link>
         </a-menu-item>

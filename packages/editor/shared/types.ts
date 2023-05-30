@@ -37,6 +37,12 @@ interface Loc {
   offset: number
 }
 
+interface IProps {
+  diractive: false | string
+  name: string
+  value: string
+}
+
 interface Mometa {
   start: Loc
   end: Loc
@@ -45,7 +51,8 @@ interface Mometa {
   isComponent: boolean
   slotName?: string
   name: string
-  path: string
+  began: number
+  props: IProps[]
 }
 
 interface MometaPath {
@@ -69,5 +76,6 @@ export type {
   ReloadMessage,
   Message,
   MometaPath,
-  SelectedMessage
+  SelectedMessage,
+  IProps
 }

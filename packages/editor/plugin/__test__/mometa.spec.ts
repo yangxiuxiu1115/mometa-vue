@@ -1,41 +1,30 @@
 import { describe, expect, it } from 'vitest'
 import injectMometaSFC from '../runtime/InjectMometaSFC'
-import {
-  common,
-  commonTest,
-  component,
-  componentTest,
-  VFor,
-  VForTest,
-  uicomponent,
-  uicomponentTest,
-  slotcomponent,
-  slotcomponentTest
-} from './case'
+import { common, component, VFor, uicomponent, slotcomponent } from './case'
 
 describe('test injectMometaSFC', () => {
   it('common element', () => {
     const commonSFC = injectMometaSFC(common)
-    expect(commonSFC).toEqual(commonTest)
+    expect(commonSFC).toMatchSnapshot()
   })
 
   it('component element', () => {
     const componentSFC = injectMometaSFC(component)
-    expect(componentSFC).toEqual(componentTest)
+    expect(componentSFC).toMatchSnapshot()
   })
 
   it('VFor element', () => {
     const VForSFC = injectMometaSFC(VFor)
-    expect(VForSFC).toEqual(VForTest)
+    expect(VForSFC).toMatchSnapshot()
   })
 
   it('ui element', () => {
     const uicomponentSFC = injectMometaSFC(uicomponent)
-    expect(uicomponentSFC).toEqual(uicomponentTest)
+    expect(uicomponentSFC).toMatchSnapshot()
   })
 
   it('slot element', () => {
     const slotcomponentSFC = injectMometaSFC(slotcomponent)
-    expect(slotcomponentSFC).toBe(slotcomponentTest)
+    expect(slotcomponentSFC).toMatchSnapshot()
   })
 })
