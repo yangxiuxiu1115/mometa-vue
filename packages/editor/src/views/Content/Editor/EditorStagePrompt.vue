@@ -31,7 +31,7 @@
 import { shallowRef, watch, inject, Ref } from 'vue'
 
 import { useEvent, useInject } from '@/hooks'
-import { isEqual } from '@/utils'
+import { isEqual, originUrl } from '@/utils'
 import type { Message, MometaPath, MometaMessage, NodeStyle } from '@shared/types'
 
 const props = defineProps<{
@@ -70,13 +70,7 @@ watch(mometaPath, (val) => {
 })
 const receiveMessage = (ev: MessageEvent<Message>) => {
   if (!isEdit!.value) return
-  let origin: string
-  if (import.meta.env.DEV) {
-    origin = 'http://127.0.0.1:5174'
-  } else {
-    origin = '/'
-  }
-  if (ev.origin === origin) {
+  if (ev.origin === originUrl) {
     if (ev.data.action === 'mometa') {
       const data = ev.data as MometaMessage
       mometaPath.value = data.mometa

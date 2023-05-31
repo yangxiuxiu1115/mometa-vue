@@ -4,16 +4,17 @@
       v-if="changeIframe"
       ref="iframeRef"
       class="editor-iframe"
-      :src="`${prefix}${iframeUrl}`"
+      :src="`${originUrl}${iframeUrl}`"
       frameborder="0"
     ></iframe>
-    <iframe v-else ref="iframeRef" class="editor-iframe" :src="`${prefix}${iframeUrl}`" frameborder="0"></iframe>
+    <iframe v-else ref="iframeRef" class="editor-iframe" :src="`${originUrl}${iframeUrl}`" frameborder="0"></iframe>
   </div>
   <EditorStagePrompt :is-resizing="isResizing" />
 </template>
 
 <script setup lang="ts">
 import { watch, onMounted, onUnmounted, ref } from 'vue'
+import { originUrl } from '@/utils'
 
 import EditorStagePrompt from './EditorStagePrompt.vue'
 
@@ -22,14 +23,12 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['iframeChange'])
-const prefix = import.meta.env.DEV ? `http://127.0.0.1:5174` : ''
 const iframeRef = ref<HTMLIFrameElement>()
 const iframeUrl = ref('')
 const changeIframe = ref(true)
 watch(
   () => props.iframeUrl,
   (val) => {
-    console.log(val)
     changeIframe.value = !changeIframe.value
     iframeUrl.value = val.url
   },
