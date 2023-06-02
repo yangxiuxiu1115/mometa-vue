@@ -26,10 +26,8 @@ import { ArrowLeftOutlined, ArrowRightOutlined, SyncOutlined } from '@ant-design
 
 import { useInject, useState, useEvent } from '@/hooks'
 import type { HashMessage, HistoryMessage, Message } from '@shared/types'
+import { originUrl } from '@/utils'
 
-const props = defineProps<{
-  iframeRef?: HTMLIFrameElement
-}>()
 const emit = defineEmits(['urlChange'])
 
 const url = () => {
@@ -80,7 +78,7 @@ watch(
 )
 
 const messageHandle = (ev: MessageEvent<Message>) => {
-  if (import.meta.env.DEV && ev.origin !== 'http://127.0.0.1:5174') {
+  if (import.meta.env.DEV && ev.origin !== originUrl) {
     return
   } else if (!import.meta.env.DEV && ev.origin !== window.origin) {
     return

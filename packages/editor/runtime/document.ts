@@ -8,6 +8,7 @@ document.createElement = function (tagName: string, options?: ElementCreationOpt
   Object.defineProperty(el, 'mometa', {
     enumerable: true,
     set(value: Mometa) {
+      console.log(el.mometa)
       const path = el.getAttribute('__mometa')
       ;(el as any).__mometa = {
         ...value,

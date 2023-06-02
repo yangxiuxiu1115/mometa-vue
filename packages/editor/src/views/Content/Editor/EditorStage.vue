@@ -1,6 +1,6 @@
 <template>
   <div class="editor-stage">
-    <EditorStageWidget :iframe-ref="iframeRef" @url-change="urlChange" />
+    <EditorStageWidget @url-change="urlChange" />
     <div class="editor-stage__wrapper">
       <EditorStageWrapper :iframe-url="iframeUrl" @iframe-change="iframeChange" />
     </div>

@@ -40,16 +40,16 @@ const handleCollapse = () => {
 }
 
 const onChange = (value?: string) => {
+  console.log('value', code, scriptCode, filename, selectNode, range)
   http('nodeopt', {
     type: 3,
     filename: filename.value,
     data: {
-      start: range.value?.start,
-      end: range.value?.end,
+      ...range.value,
       code: value
     }
   })
-  location.reload()
+  // location.reload()
 }
 </script>
 
