@@ -1,7 +1,10 @@
-const getValidMometaPath = (el: any) => {
+import { setSelectId } from "./utils"
+import type { NodeStyle } from "@shared/types"
+
+const getValidMometaPath = (el: any): NodeStyle[] => {
   const path = []
   while (el && el !== document) {
-    const mometa = el.__vnode?.__mometa
+    const mometa = el.__mometa
     if (mometa) {
       const last = path[path.length - 1]
       if (mometa === last?.mometa) {
@@ -44,10 +47,14 @@ window.addEventListener('mouseout', (e: any) => {
   }
 })
 
-window.addEventListener('click', () => {
+window.addEventListener('click', (e) => {
+  const el = e.target
+  const mometa = getValidMometaPath(el)[0]
+  setSelectId(mometa?.mometa.id!)
   window.parent.postMessage(
     {
-      action: 'selected'
+      action: 'selected',
+      mometa
     },
     '*'
   )

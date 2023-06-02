@@ -1,4 +1,6 @@
 import type { Mometa } from '@shared/types'
+import * as uuid from 'uuid'
+import { getSelectId } from './utils'
 
 const originCreateElement = document.createElement
 
@@ -8,12 +10,25 @@ document.createElement = function (tagName: string, options?: ElementCreationOpt
   Object.defineProperty(el, 'mometa', {
     enumerable: true,
     set(value: Mometa) {
-      console.log(el.mometa)
-      const path = el.getAttribute('__mometa')
-      ;(el as any).__mometa = {
+      const id = (el as any).__mometa?.id || uuid.v4()
+      const mometa = {
         ...value,
-        path
+        id
       }
+      if (getSelectId() === id) {
+        window.parent.postMessage(
+          {
+            action: 'selected',
+            mometa: {
+              mometa,
+              rect: el.getBoundingClientRect(),
+              name: mometa.name
+            }
+          },
+          '*'
+        )
+      }
+      ;(el as any).__mometa = mometa
     },
     get() {
       return (el as any).__mometa

@@ -40,7 +40,6 @@ const handleCollapse = () => {
 }
 
 const onChange = (value?: string) => {
-  console.log('value', code, scriptCode, filename, selectNode, range)
   http('nodeopt', {
     type: 3,
     filename: filename.value,

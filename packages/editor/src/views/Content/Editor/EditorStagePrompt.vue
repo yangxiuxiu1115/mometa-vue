@@ -32,7 +32,7 @@ import { shallowRef, watch, inject, Ref } from 'vue'
 
 import { useEvent, useInject } from '@/hooks'
 import { isEqual, originUrl } from '@/utils'
-import type { Message, MometaPath, MometaMessage, NodeStyle } from '@shared/types'
+import type { Message, MometaPath, MometaMessage, MometaPathMessage, NodeStyle } from '@shared/types'
 
 const props = defineProps<{
   isResizing: boolean
@@ -72,11 +72,13 @@ const receiveMessage = (ev: MessageEvent<Message>) => {
   if (!isEdit!.value) return
   if (ev.origin === originUrl) {
     if (ev.data.action === 'mometa') {
-      const data = ev.data as MometaMessage
+      const data = ev.data as MometaPathMessage
       mometaPath.value = data.mometa
     }
     if (ev.data.action === 'selected') {
-      changeSelectNode(hoverStyle.value)
+      const data = ev.data as MometaMessage
+      console.log(data.mometa, 'hmr')
+      changeSelectNode(data.mometa)
       hoverStyle.value = null
     }
   }
